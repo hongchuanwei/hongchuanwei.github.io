@@ -3,6 +3,12 @@ footer .col-sm-8 {
   justify-content: flex-end;
 }
 
+footer .col-xs-8 {
+  display: flex;
+  justify-content: flex-end;
+    float: right;
+}
+
 footer ul {
   list-style: none;
 }
