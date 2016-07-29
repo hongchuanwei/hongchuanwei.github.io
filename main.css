@@ -3,7 +3,7 @@ footer .col-sm-8 {
   justify-content: flex-end;
 }
 
-footer .col-xs-8 {
+footer .col-xs-4 {
   display: flex;
   justify-content: flex-end;
     float: right;
