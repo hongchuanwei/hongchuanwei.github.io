@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>{{ page.title }}</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<!-- Custom styles -->
+	<link rel="stylesheet" type="text/css" href="index.css"/>
+
+  </head>
+  <body>
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+	  <div class="container">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle collapsed" 
+				  data-toggle="collapse" data-target="#navbar" 
+				  aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"/>
+			<span class="icon-bar"/>
+			<span class="icon-bar"/>
+		  </button>
+		  <a class="navbar-brand" href="index.html">Hongchuan Wei</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li class="active">
+			  <a href="#">Home</a>
+			</li>
+			<li>
+			  <a href="#about">Academic</a>
+			</li>
+			<li>
+			  <a href="#contact">Projects</a>
+			</li>
+			<li>
+			  <a href="#">Fun</a>
+			</li>
+			<li>
+			  <a href="#">My Cats</a>
+			</li>
+			<li>
+			  <a href="#">Jenny's Art Work</a>
+			</li>
+		  </ul>
+		  <ul class="nav navbar-nav navbar-right">
+			<li>
+			  <a href="#">Contact</a>
+			</li>
+		  </ul>
+		</div>
+		<!--/.nav-collapse -->
+	  </div>
+	</nav>
+
+	<!-- page content -->
+	<div class="container">
+	  {{ content }}
+	</div>
+
+	<!-- Site footer -->
+	<footer class="container">
+	  <div class="row">
+		<p class="col-xs-8">&copy; 2016 Hongchuan Wei</p>
+		<ul class="col-xs-4">
+		  <li class="col-sm-1">
+			<a href="https://www.linkedin.com/in/hongchuanwei/">
+			  <img src="./imgs/Linkedin-171.png"/>
+			</a>
+		  </li>
+		  <li class="col-sm-1">
+			<a href="https://github.com/hongchuanwei">
+			  <img src="imgs/Github-256.png"/>
+			</a>
+		  </li>
+		  <li class="col-sm-1">
+			<a href="http://stackexchange.com/users/2572128/river-06">
+			  <img src="imgs/StackExchange-75.png"/>
+			</a>
+		  </li>
+		</ul>
+	  </div>
+	</footer>
+  </body>
+</html>
+
