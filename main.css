@@ -13,7 +13,10 @@ footer ul {
   list-style: none; 
 }
 
-footer li img {
-  width: 16px;
-  height: 16px;
+.btn_gray{
+    color: gray;
+}
+
+.btn_black{
+    color: black;
 }
