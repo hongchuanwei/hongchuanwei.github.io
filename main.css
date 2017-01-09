@@ -1,22 +1,29 @@
 footer .col-sm-8 {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 footer .col-xs-4 {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
     float: right;
 }
 
-footer ul {
-  list-style: none; 
+footer ul.footer_ul {
+    list-style: none;
+    float: right;
 }
 
-.btn_gray{
-    color: gray;
+footer li {
+    display: inline;
 }
 
 .btn_black{
     color: black;
+    width: 24px;
+    height: 24px;
+}
+
+#i_weibo{
+    margin: 0px 0px 12px 0px;
 }
