@@ -9,7 +9,13 @@ footer li {
     display: inline;
 }
 
-.btn_black{
+footer .lbl_share {
+    font-size: 14px;
+    position:relative;
+    top:-4px;
+}
+
+.btn_share{
     color: black;
     width: 24px;
     height: 24px;

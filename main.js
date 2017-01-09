@@ -5,6 +5,7 @@ var GP_COLOR = "rgb(223, 66, 60)"; // Google plus color
 var WB_TEXT = "&title=Hongchuan's website";
 var TT_TEXT = "&amp;text=Hongchuan's%20website%20&amp;hashtags=hongchuanwebsite";
 var FB_TEXT = "&description=Hongchuan's website";
+var SHARE_BTN_DEFAULT_COLOR = "black";
 $(document).ready(function(){
     // insert current url to share buttons
     var url = window.location.href;
@@ -26,19 +27,19 @@ $(document).ready(function(){
     // fb hover effect
     $("#i_facebook").hover(
 	function(){ $(this).css({"color": FB_COLOR}) },
-	function(){ $(this).css({"color": "black"}) }
+	function(){ $(this).css({"color": SHARE_BTN_DEFAULT_COLOR}) }
     );
 
     // twitter hover effect
     $("#i_twitter").hover(
 	function(){ $(this).css({"color": TT_COLOR}) },
-	function(){ $(this).css({"color": "black"}) }
+	function(){ $(this).css({"color": SHARE_BTN_DEFAULT_COLOR}) }
     );
 
     // google plus hover effect
     $("#i_google_plus").hover(
 	function(){ $(this).css({"color": GP_COLOR}) },
-	function(){ $(this).css({"color": "black"}) }
+	function(){ $(this).css({"color": SHARE_BTN_DEFAULT_COLOR}) }
     );
 
         
