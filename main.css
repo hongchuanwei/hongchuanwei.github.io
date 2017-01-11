@@ -1,5 +1,4 @@
 
-
 footer ul.footer_ul {
     list-style: none;
     float: right;
@@ -14,6 +13,15 @@ footer .lbl_share {
     position:relative;
     top:-4px;
 }
+
+.navbar-custom .navbar-brand:hover {
+    background-color: #c70039;
+}
+
+.navbar-custom .navbar-li:hover {
+    background-color: #c70039;
+}
+
 
 .btn_share{
     color: black;
