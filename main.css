@@ -32,3 +32,122 @@ footer .lbl_share {
 #i_weibo{
     margin: 0px 0px 12px 0px;
 }
+
+
+.paper .col-md-2 img {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 300px;
+    position: relative;
+    top: 10px;
+}
+
+.paper .col-md-3 img {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 300px;
+    position: relative;
+    top: 10px;
+}
+
+.paper .label-before-tag {
+    position: relative;
+    float: left;
+    margin: 3px 0px 0px 0px;
+}
+
+.paper .sub-header {
+    color: gray;
+    margin: -9px 0px 0px 0px;
+}
+
+.badge-h2 {
+    font-size: 20px;
+}
+
+
+.tag {
+    float:left;
+    position:relative;
+    height: 18px;
+    margin:2px 0px 0px 20px;
+    font-size:11px;
+    font-weight:bold;
+    text-decoration:none;
+    color:white;
+ 
+    padding:0.08em 0.417em 0.08em 0.917em;
+ 
+    /*border-top:1px solid #d99d38;
+    border-right:1px solid #d99d38;
+    border-bottom:1px solid #d99d38;*/
+ 
+    -webkit-border-radius:0 0.25em 0.25em 0;
+    -moz-border-radius:0 0.25em 0.25em 0;
+    border-radius:0 0.25em 0.25em 0;
+
+    z-index:100;
+}
+
+.tag::before{
+	content:"";
+	float:left;
+	position:absolute;
+	top:0;
+	left:-9px;
+	width:0;
+	height:0;
+	border-style:solid;
+	border-width:9px 9px 9px 0;		
+}
+
+
+.tag::after{
+	content:"";
+	position:absolute;
+	top:6px;
+	left:-2px;
+	float:left;
+	width:6px;
+	height:6px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	background:#fff;
+	z-index:999;
+}
+
+
+.tag-primary {
+    background-color: rgb(44, 123, 178);
+}
+
+.tag-primary:before {
+    border-color:transparent rgb(44, 123, 178) transparent transparent;	
+}
+
+.tag-success {
+    background-color: rgb(83, 183, 104);
+}
+
+.tag-success:before {
+    border-color:transparent rgb(83, 183, 104) transparent transparent;	
+}
+
+.tag-info {
+    background-color: rgb(82, 193, 219);
+}
+
+.tag-info:before {
+    border-color:transparent rgb(82, 193, 219) transparent transparent;	
+}
+
+.tag-warning {
+    background-color: rgb(243, 172, 94);
+}
+
+.tag-warning:before {
+    border-color:transparent rgb(243, 172, 94) transparent transparent;	
+}
