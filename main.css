@@ -55,7 +55,10 @@ footer .lbl_share {
 .paper .label-before-tag {
     position: relative;
     float: left;
-    margin: 3px 0px 0px 0px;
+    clear: left;
+    margin: 2px 0px 0px 0px;
+    height: 18px;
+    padding-top: 4px;
 }
 
 .paper .sub-header {
@@ -77,13 +80,13 @@ footer .lbl_share {
     font-weight:bold;
     text-decoration:none;
     color:white;
- 
+    
     padding:0.08em 0.417em 0.08em 0.917em;
- 
+    
     /*border-top:1px solid #d99d38;
     border-right:1px solid #d99d38;
     border-bottom:1px solid #d99d38;*/
- 
+    
     -webkit-border-radius:0 0.25em 0.25em 0;
     -moz-border-radius:0 0.25em 0.25em 0;
     border-radius:0 0.25em 0.25em 0;
@@ -92,31 +95,31 @@ footer .lbl_share {
 }
 
 .tag::before{
-	content:"";
-	float:left;
-	position:absolute;
-	top:0;
-	left:-9px;
-	width:0;
-	height:0;
-	border-style:solid;
-	border-width:9px 9px 9px 0;		
+    content:"";
+    float:left;
+    position:absolute;
+    top:0;
+    left:-9px;
+    width:0;
+    height:0;
+    border-style:solid;
+    border-width:9px 9px 9px 0;		
 }
 
 
 .tag::after{
-	content:"";
-	position:absolute;
-	top:6px;
-	left:-2px;
-	float:left;
-	width:6px;
-	height:6px;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
-	background:#fff;
-	z-index:999;
+    content:"";
+    position:absolute;
+    top:6px;
+    left:-2px;
+    float:left;
+    width:6px;
+    height:6px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    background:#fff;
+    z-index:999;
 }
 
 
