@@ -96,6 +96,10 @@ div.resource_line {
     margin-top: 4px;
 }
 
+.paper .div_bibtex {
+    display: none;
+}
+
 .badge-h2 {
     font-size: 20px;
 }
