@@ -66,6 +66,32 @@ footer .lbl_share {
     margin: -9px 0px 0px 0px;
 }
 
+.paper a.btn {
+    height: 18px;
+    font-size: 11px;
+    font-weight: bold;
+    padding-top: 0px;
+    border: 0px;
+    padding-top: 1px;
+    background-color: rgb(119,119, 119);
+    color: white;
+}
+
+.paper a.btn:hover {
+    color: white;
+    background-color:rgb(217, 83, 79);
+    border: 0px;
+}
+
+.paper pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    margin-top: 4px;
+}
+
 .badge-h2 {
     font-size: 20px;
 }
