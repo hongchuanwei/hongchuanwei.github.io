@@ -61,6 +61,10 @@ footer .lbl_share {
     padding-top: 4px;
 }
 
+div.resource_line {
+    clear: left;
+}
+
 .paper .sub-header {
     color: gray;
     margin: -9px 0px 0px 0px;
