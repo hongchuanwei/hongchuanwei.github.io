@@ -1,0 +1,30 @@
+TY  - JOUR
+T1  - Information value in nonparametric Dirichlet-process Gaussian-process (DPGP) mixture models
+JO  - Automatica
+VL  - 74
+IS  - 
+SP  - 360
+EP  - 368
+PY  - 2016/12//
+T2  - 
+AU  - Wei, Hongchuan
+AU  - Lu, Wenjie
+AU  - Zhu, Pingping
+AU  - Ferrari, Silvia
+AU  - Liu, Miao
+AU  - Klein, Robert H.
+AU  - Omidshafiei, Shayegan
+AU  - How, Jonathan P.
+SN  - 0005-1098
+DO  - http://dx.doi.org/10.1016/j.automatica.2016.07.018
+UR  - http://www.sciencedirect.com/science/article/pii/S0005109816302862
+KW  - Information theory
+KW  - Bayesian nonparametric models
+KW  - Gaussian process
+KW  - Dirichlet process
+KW  - Information gain
+AB  - Abstract
+This paper presents tractable information value functions for Dirichlet-process Gaussian-process (DPGP) mixture models obtained via collocation methods and Monte Carlo integration. Quantifying information value in tractable closed form is key to solving control and estimation problems for autonomous information-gathering systems. The properties of the proposed value functions are analyzed and then demonstrated by planning sensor measurements so as to minimize the uncertainty in DPGP target models that are learned incrementally over time. Simulation results show that sensor planning based on expected KL divergence outperforms algorithms based on mutual information, particle filters, and randomized methods.
+ER  - 
+
+
