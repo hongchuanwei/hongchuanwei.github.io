@@ -1,0 +1,60 @@
+TY  - JOUR
+TI  - A Geometric Transversals Approach to Analyzing the Probability of Track Detection for Maneuvering Targets
+T2  - IEEE Transactions on Computers
+SP  - 2633
+EP  - 2646
+AU  - H. Wei
+AU  - S. Ferrari
+PY  - 2014
+KW  - Markov processes
+KW  - geometry
+KW  - nonlinear programming
+KW  - object detection
+KW  - probability
+KW  - sensor fusion
+KW  - sensor placement
+KW  - state estimation
+KW  - target tracking
+KW  - 3D cone representation
+KW  - Markov model transition probabilities
+KW  - Markov motion model
+KW  - Markov parameters
+KW  - control algorithms
+KW  - estimation algorithm
+KW  - geometric transversals approach
+KW  - maneuvering targets
+KW  - multiple distributed sensor measurements
+KW  - nonlinear program
+KW  - optimal sensor placement
+KW  - sensor coordination
+KW  - sensor field-of-view
+KW  - sensor network
+KW  - sensor tracking
+KW  - spatiotemporal Euclidian space
+KW  - target detection
+KW  - target state estimation
+KW  - track detection probability analysis
+KW  - tracking algorithm
+KW  - transition probability density function
+KW  - Computational modeling
+KW  - Markov processes
+KW  - Quality of service
+KW  - Random variables
+KW  - Target tracking
+KW  - Detection theory
+KW  - geometric transversals
+KW  - nonlinear optimization
+KW  - sensor networks
+KW  - target tracking
+KW  - track coverage
+DO  - 10.1109/TC.2013.43
+JO  - IEEE Transactions on Computers
+IS  - 11
+SN  - 0018-9340
+VO  - 63
+VL  - 63
+JA  - IEEE Transactions on Computers
+Y1  - Nov. 2014
+ER  - 
+
+
