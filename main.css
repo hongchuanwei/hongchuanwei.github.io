@@ -189,3 +189,27 @@ div.resource_line {
 .tag-warning:before {
     border-color:transparent rgb(243, 172, 94) transparent transparent;	
 }
+
+.tag-pink {
+    background-color: #ff9999;
+}
+
+.tag-pink:before {
+    border-color:transparent #ff9999 transparent transparent;	
+}
+
+.tag-sn {
+    background-color: #ff6666;
+}
+
+.tag-sn:before {
+    border-color:transparent #ff6666 transparent transparent;	
+}
+
+.tag-target {
+    background-color: #cc99ff;
+}
+
+.tag-target:before {
+    border-color:transparent #cc99ff transparent transparent;	
+}
