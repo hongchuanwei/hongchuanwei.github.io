@@ -7,10 +7,17 @@ $(document).ready( function() {
 	"color": "white"
     });
 
-   
+    $(".div_bibtex" ).each( function(index) {
+	$(this).attr("id", "div_bibtex"+index);
+    });
+
+    $(".btn_bibtex").each( function(index) {
+	$(this).attr("id", "btn_bibtex"+index);
+    });
+    
     $( ".btn_bibtex" ).each(function( index ) {
-	$( "#btn_bibtex"+(index+1) ).click( function() {
-	    $( "#div_bibtex"+(index+1) ).slideToggle();
+	$( "#btn_bibtex"+index ).click( function() {
+	    $( "#div_bibtex"+index ).slideToggle();
 	});
     });
 
