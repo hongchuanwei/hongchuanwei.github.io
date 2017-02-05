@@ -61,6 +61,13 @@ footer .lbl_share {
     padding-top: 4px;
 }
 
+.paper .label-disabled {
+    padding-top: 3px;
+    margin: 2px 0px 0px 0px;
+    height: 18px;
+    background-color: rgb(155, 155, 155);
+}
+
 div.resource_line {
     clear: left;
     margin-top:2px;
