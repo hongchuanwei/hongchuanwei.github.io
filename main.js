@@ -5,7 +5,7 @@ var GP_COLOR = "rgb(223, 66, 60)"; // Google plus color
 var WB_TEXT = "&title=Hongchuan's website";
 var TT_TEXT = "&amp;text=Hongchuan's%20website%20&amp;hashtags=hongchuanwebsite";
 var FB_TEXT = "&description=Hongchuan's website";
-var SHARE_BTN_DEFAULT_COLOR = "black";
+var SHARE_BTN_DEFAULT_COLOR = "gray";
 var NAV_BG_COLOR_SELECTED = "rgb(199,0,57)";
 var NAV_BG_COLOR_DEFAULT = "rgb(34,34,34)";
 var NAV_FONT_COLOR_DEFAULT = "rgb(157, 157, 157)";
@@ -25,7 +25,7 @@ $(document).ready(function(){
     // weibo hover effect
     $("#i_weibo").hover(
 	function(){ $(this).attr("src", "imgs/weibo-color-128.png") },
-	function(){ $(this).attr("src", "imgs/weibo-black-32.png") }
+	function(){ $(this).attr("src", "imgs/weibo-gray-32.png") }
     );
     
     // fb hover effect
