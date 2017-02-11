@@ -1,18 +1,18 @@
-
-footer ul.footer_ul {
-    list-style: none;
-    float: right;
+footer {
+    background-color: rgb(238, 238, 238);
 }
 
-footer li {
-    display: inline;
+footer i {
+    color: gray;
 }
 
-footer .lbl_share {
-    font-size: 14px;
-    position:relative;
-    top:-4px;
+footer span {
+    display: inline-block;
+    height: 27px;
+    width: 60px;
+    padding-left: 20px;
 }
+
 
 .navbar-custom .navbar-brand:hover {
     background-color: #CD5C5C;
@@ -25,8 +25,6 @@ footer .lbl_share {
 
 .btn_share{
     color: gray;
-    width: 24px;
-    height: 24px;
 }
 
 #i_weibo{
