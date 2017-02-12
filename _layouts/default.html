@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    
     <title>{{ page.title }}</title>
 
     <!-- Bootstrap -->
@@ -38,6 +40,19 @@
 
   
   <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+   
+      
+
+    
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top navbar-inverse navbar-custom">
       <div class="container">
@@ -115,12 +130,24 @@
 	      <span> <i class="fa fa-facebook fa-2x"></i> </span>
 	    </a>
 
-	    <g:plusone size="standard(bubble)" id="g-plusone"></g:plusone>
-	    
+	    <!-- Your fb like button code -->
+	    <div id="div-fb" class="fb-like"
+		 data-layout="button_count"
+		 data-action="like"
+		 data-size="small"
+		 data-show-faces="false"
+		 data-share="false">
+	    </div>
+
+	    <div id="google-plusone">
+	      <div class="g-plusone" data-size="standard(bubble)" ></div>
+	    </div>
 	  </div>
 	</div>
       </div>
     </footer>
   </body>
+
+  
 </html>
 

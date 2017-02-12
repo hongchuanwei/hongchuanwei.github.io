@@ -29,6 +29,11 @@ footer #div-copyright {
     padding-top: 5px;
 }
 
+footer #google-plusone {
+    display: inline-block;
+    padding-top: 5px;
+}
+
 .navbar-custom .navbar-brand:hover {
     background-color: #CD5C5C;
 }
