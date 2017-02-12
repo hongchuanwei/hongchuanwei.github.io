@@ -5,14 +5,23 @@ footer {
 footer i {
     color: gray;
 }
-
-footer span {
-    display: inline-block;
-    height: 27px;
-    width: 60px;
-    padding-left: 20px;
+footer #span-share {
+    position: relative;
+    bottom: 2px;
+    font-size: 20px;
+    color: gray;
 }
 
+footer a span {
+    display: inline-block;
+    height: 31px;
+    width: 60px;
+    padding-left: 17px;
+}
+
+footer #div-copyright {
+    padding-top: 5px;
+}
 
 .navbar-custom .navbar-brand:hover {
     background-color: #CD5C5C;
