@@ -27,6 +27,7 @@ $(document).ready(function(){
 			     + pathname + "%3Fa%3Db%26c%3Dd");
     $("#a_facebook").attr("href", "http://www.facebook.com/sharer.php?u=" + url + FB_TEXT);
     $("#fb-like").attr("data-href", url);
+    $("#fb-like button").attr("title", "test");
 
     // span hover effect
     $(".div-share a span").each(function(index){
