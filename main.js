@@ -26,8 +26,12 @@ $(document).ready(function(){
 			     + "http%3A%2F%2F" + "hongchuanwei.com"
 			     + pathname + "%3Fa%3Db%26c%3Dd");
     $("#a_facebook").attr("href", "http://www.facebook.com/sharer.php?u=" + url + FB_TEXT);
-    $("#fb-like").attr("data-href", url);
-    $("#fb-like button").attr("title", "test");
+    if(url==="http://hongchuanwei.com/"){
+	$("#fb-like").attr("data-href", url + "index.html");
+	alert(url + "index.html");
+    }
+    
+    
 
     // span hover effect
     $(".div-share a span").each(function(index){
