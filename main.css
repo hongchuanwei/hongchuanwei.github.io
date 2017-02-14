@@ -5,6 +5,8 @@ footer {
 footer i {
     color: gray;
 }
+
+
 footer #span-share {
     display: inline-block;
     background-color: gray;
@@ -14,6 +16,18 @@ footer #span-share {
     position: absolute;
     height: 31px;
     left:-25px;
+    padding: 5px 2px 0px 2px;
+}
+
+footer #span-like {
+    display: inline-block;
+    background-color: gray;
+    color: white;
+    font-size: 15px;
+    font-weight: normal;
+    position: absolute;
+    height: 31px;
+    left:266px;
     padding: 5px 2px 0px 2px;
 }
 
@@ -31,7 +45,19 @@ footer #div-copyright {
 
 footer #google-plusone {
     display: inline-block;
-    padding-top: 5px;
+    position: relative;
+    top: 2px;
+    left: 100px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    height: 10px;
+}
+
+footer #fb-like {
+    display: inline-block;
+    position: absolute;
+    top: 6px;
+    left: 300px;
 }
 
 .navbar-custom .navbar-brand:hover {
