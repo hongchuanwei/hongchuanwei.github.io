@@ -28,7 +28,6 @@ $(document).ready(function(){
     $("#a_facebook").attr("href", "http://www.facebook.com/sharer.php?u=" + url + FB_TEXT);
     if(url==="http://hongchuanwei.com/"){
 	$("#fb-like").attr("data-href", url + "index.html");
-	alert(url + "index.html");
     }
     
     
