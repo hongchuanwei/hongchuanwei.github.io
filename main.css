@@ -1,12 +1,15 @@
 div.div-text {
     padding-top: 60px;
-    font-family: Consolas, "Courier New", Courier, "Liberation Mono", monospace;
+    font-family: "Courier New", Courier, "Liberation Mono", monospace;
+
 }
 div.div-text h1 {
     font-size: 4.5em;
+	font-weight: bold;
 }
 div.div-text p {
     font-size: 1.4em;
+	font-weight: bold;
 }
 #div-cursor {
     display: inline-block;
@@ -15,7 +18,6 @@ div.div-text p {
     height: 52px;
     width: 40px;
 }
-
 
 
 footer {
@@ -79,6 +81,7 @@ footer #fb-like {
     top: 6px;
     left: 300px;
 }
+
 
 .navbar-custom .navbar-brand:hover {
     background-color: #CD5C5C;
