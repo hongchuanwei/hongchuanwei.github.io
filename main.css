@@ -1,24 +1,14 @@
-div.div-text {
-    padding-top: 60px;
-    font-family: "Courier New", Courier, "Liberation Mono", monospace;
-
-}
-div.div-text h1 {
-    font-size: 4.5em;
-	font-weight: bold;
-}
-div.div-text p {
-    font-size: 1.4em;
-	font-weight: bold;
-}
-#div-cursor {
-    display: inline-block;
-    padding: 0px;
-    margin: 0px;
-    height: 52px;
-    width: 40px;
+/* header style */
+.navbar-custom .navbar-brand:hover {
+    background-color: #CD5C5C;
 }
 
+.navbar-custom .navbar-li:hover {
+    background-color: #CD5C5C;
+}
+
+
+/* footer style */
 
 footer {
     background-color: rgb(238, 238, 238);
@@ -82,24 +72,43 @@ footer #fb-like {
     left: 300px;
 }
 
-
-.navbar-custom .navbar-brand:hover {
-    background-color: #CD5C5C;
-}
-
-.navbar-custom .navbar-li:hover {
-    background-color: #CD5C5C;
-}
-
-
-.btn_share{
+footer .btn_share{
     color: gray;
 }
 
-#i_weibo{
-    margin: 0px 0px 14px 0px;
+
+/* index style */
+div.div-text {
+    padding-top: 60px;
+    font-family: "Courier New", Courier, "Liberation Mono", monospace;
+}
+div.div-text h1 {
+    font-size: 4.5em;
+	font-weight: bold;
+}
+div.div-text p {
+    font-size: 1.4em;
+	font-weight: bold;
 }
 
+#div-cursor {
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    height: 52px;
+    width: 40px;
+}
+#div-canvas {
+	border: 1px solid green;
+	height: 800px;
+}
+#canvas-description {
+	border: 1px solid red;
+	margin:auto;
+}
+
+
+/* publication.html style */
 
 .paper .col-md-2 img {
     width: 100%;

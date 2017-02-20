@@ -15,7 +15,7 @@ function PointCollection() {
     this.pointCollectionY = 0;
     this.points = [];
  
-    this.update = function () {
+    this.update = function (reset) {
         for (var i = 0; i < this.points.length; i++) {
             var point = this.points[i];
  
@@ -24,31 +24,20 @@ function PointCollection() {
             var dd = (dx * dx) + (dy * dy);
             var d = Math.sqrt(dd);
  
-            point.targetPos.x = d < 150 ? point.curPos.x - dx : point.originalPos.x;
-            point.targetPos.y = d < 150 ? point.curPos.y - dy : point.originalPos.y;
+			if(reset !== true) {
+				point.targetPos.x = d < 150 ? point.curPos.x - dx : point.originalPos.x;
+				point.targetPos.y = d < 150 ? point.curPos.y - dy : point.originalPos.y;
+			} else {
+				point.targetPos.x = point.originalPos.x;
+				point.targetPos.y = point.originalPos.y;
+			}
+            
  
             point.update();
         }
     };
  
-    this.shake = function () {
-        var randomNum = Math.floor(Math.random() * 5) - 2;
- 
-        for (var i = 0; i < this.points.length; i++) {
-            var point = this.points[i];
-            var dx = this.mousePos.x - point.curPos.x;
-            var dy = this.mousePos.y - point.curPos.y;
-            var dd = (dx * dx) + (dy * dy);
-            var d = Math.sqrt(dd);
-            if (d < 50) {
-                this.pointCollectionX = Math.floor(Math.random() * 5) - 2;
-                this.pointCollectionY = Math.floor(Math.random() * 5) - 2;
-            }
-            point.draw(bubbleShape, this.pointCollectionX, this.pointCollectionY);
-        }
-    };
- 
-    this.draw = function (bubbleShape, reset) {
+    this.draw = function ( reset) {
         for (var i = 0; i < this.points.length; i++) {
             var point = this.points[i];
  
@@ -61,14 +50,13 @@ function PointCollection() {
                 this.mousePos = new Vector(0, 0);
             }
  
-            point.draw(bubbleShape, this.pointCollectionX, this.pointCollectionY, reset);
+            point.draw(this.pointCollectionX, this.pointCollectionY, reset);
         }
     };
  
-    this.reset = function (bubbleShape) {};
 }
  
-function Point(x, y, z, size, color) {
+function Point(x, y, z, fontSize, color, letter) {
     this.curPos = new Vector(x, y, z);
     this.color = color;
  
@@ -77,11 +65,13 @@ function Point(x, y, z, size, color) {
     this.springStrength = 0.1;
  
     this.originalPos = new Vector(x, y, z);
-    this.radius = size;
-    this.size = size;
+    this.fontSize = fontSize;
+	this.originalFontSize = fontSize;
     this.targetPos = new Vector(x, y, z);
     this.velocity = new Vector(0.0, 0.0, 0.0);
  
+	this.letter = letter;
+	
     this.update = function () {
         var dx = this.targetPos.x - this.curPos.x;
         var dy = this.targetPos.y - this.curPos.y;
@@ -109,27 +99,26 @@ function Point(x, y, z, size, color) {
         this.velocity.z *= this.friction;
         this.curPos.z += this.velocity.z;
  
-        this.radius = this.size * this.curPos.z;
-        if (this.radius < 1) this.radius = 1;
+        this.fontSize = this.originalFontSize * this.curPos.z;
+        if (this.fontSize < this.originalFontSize) this.fontSize =  this.originalFontSize;
     };
  
-    this.draw = function (bubbleShape, dx, dy) {
-        ctx.fillStyle = "black"; //this.color;
-        if (bubbleShape == "square") {
-            /*ctx.beginPath();
-            ctx.fillRect(this.curPos.x + dx, this.curPos.y + dy, this.radius * 1.5, this.radius * 1.5); */
-			ctx.font = '10px serif';
-			ctx.fillText('s', this.curPos.x + dx, this.curPos.y + dy);
-        } else {
-            /*ctx.beginPath();
-            ctx.arc(this.curPos.x + dx, this.curPos.y + dy, this.radius, 0, Math.PI * 2, true);
-            ctx.fill();*/
-			ctx.font = '20px serif';
-			ctx.fillText('c', this.curPos.x + dx, this.curPos.y + dy);
-        }
+    this.draw = function (dx, dy, reset) {
+		//ctx.fillStyle = this.color;
+		
+		if(this.curPos.z>1.1) {
+			var colorIndex = (Math.floor(this.curPos.z*3))%numColor; 
+			ctx.fillStyle = letterColors[colorIndex];
+		} else {
+			ctx.fillStyle = "#000000";
+		}
+				
+		ctx.font = this.fontSize +"px" + " Courier new";
+		ctx.fillText(this.letter, this.curPos.x + dx, this.curPos.y + dy);   
     };
 }
- 
+
+
 function makeColor(hslList, fade) {
     var hue = hslList[0] /*- 17.0 * fade / 1000.0*/ ;
     var sat = hslList[1] /*+ 81.0 * fade / 1000.0*/ ;
@@ -159,10 +148,11 @@ function initEventListeners() {
 }
  
 function updateCanvasDimensions() {
-    canvas.attr({
-        height: 500,
-        width: 1000
+	canvas.attr({
+        height: this.div.height(),
+        width: this.div.width()
     });
+
     canvasWidth = canvas.width();
     canvasHeight = canvas.height();
     draw();
@@ -180,14 +170,10 @@ function onTouchMove(e) {
     }
 }
  
-function bounceName() {
-    shake();
-    setTimeout(bounceName, 30);
-}
- 
+
 function bounceBubbles() {
     draw();
-    update();
+    update(reset);
     setTimeout(bounceBubbles, 30);
 }
  
@@ -200,34 +186,16 @@ function draw(reset) {
  
     ctx = tmpCanvas.getContext('2d');
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
- 
-    bubbleShape = typeof bubbleShape !== 'undefined' ? bubbleShape : "circle";
- 
+  
     if (pointCollection) {
-        pointCollection.draw(bubbleShape, reset);
+        pointCollection.draw( reset);
     }
 }
  
-function shake() {
-    var tmpCanvas = canvas.get(0);
- 
-    if (tmpCanvas.getContext === null) {
-        return;
-    }
- 
-    ctx = tmpCanvas.getContext('2d');
-    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
- 
-    bubbleShape = typeof bubbleShape !== 'undefined' ? bubbleShape : "circle";
- 
-    if (pointCollection) {
-        pointCollection.shake(bubbleShape);
-    }
-}
- 
-function update() {
+
+function update(reset) {
     if (pointCollection)
-        pointCollection.update();
+        pointCollection.update(reset);
 }
  
 function drawName(name, letterColors) {
@@ -287,32 +255,81 @@ function drawName(name, letterColors) {
     pointCollection.points = g;
     initEventListeners();
 }
+
+/*
+ * Draw letters in the description in the canvas
+ * @param {string} description The description to be displayed
+ * @param {number} fontSize Font size
+ * @param {number} letterSpace Empty space between letters
+ * @param {number} lineSpace Empty space between lines
+ */
+function drawDescription(description, fontSize, letterSpace, lineSpace) {
+    updateCanvasDimensions();
+    var g = [];
+	var hPadding = 100;
+	var vPadding = 100;
+    var xPos = hPadding; // horizontal position of letter
+	var yPos = vPadding; // vertical position of letter
+	
+	
+	// Split the description into words 
+	var words = description.split(" ");
+	
+	// Loop through all words
+	for(var word of words ) {
+		if(xPos + word.length*letterSpace > canvasWidth - hPadding) {
+			xPos = hPadding;
+			yPos += lineSpace;
+		} 
+		
+		// Put all letters in a word in the canvas
+		for(var letter of word) {
+			xPos += letterSpace;
+			g.push(new Point(xPos, yPos, 0.0, fontSize, "black", letter));
+		}
+		xPos += letterSpace;
+		g.push(new Point(xPos, yPos, 0, fontSize, "black", " "));
+	}
+ 
+    pointCollection = new PointCollection();
+    pointCollection.points = g;
+    initEventListeners();
+}
  
 window.reset = false;
  
 $(window).mouseleave(function () {
     window.reset = true;
 });
+
+$("#canvas-description").mouseleave(function() {
+	window.reset = true;
+});
  
 $(window).mouseenter(function () {
     window.reset = false;
 });
- 
-var canvas = $("#myCanvas");
+
+var div = $("#div-canvas"); 
+var canvas = $("#canvas-description");
 var canvasHeight;
 var canvasWidth;
 var ctx;
 var pointCollection;
- 
+
+var pink = "#ff66b3";
+var pink2 = "#ff0066";
+var orange = "#ffcc66";
+var green = "#669900";
+var blue = "#6699ff";
+var purple = "#cc66ff";
+//var letterColors = [black, pink, pink2, orange, green, blue, purple];
+var letterColors = [pink2, orange, green, blue, purple];
+var numColor = letterColors.length;
+	
 document.rotationForce = 0.0;
 document.Friction = 0.85;
 
-var white = [0, 0, 100];
-var black = [0, 0, 27];
-var red = [0, 100, 63];
-var orange = [40, 100, 60];
-var green = [75, 100, 40];
-var blue = [196, 77, 55];
-var purple = [280, 50, 60];
+
  
 setTimeout(updateCanvasDimensions, 30);
