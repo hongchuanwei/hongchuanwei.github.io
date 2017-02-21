@@ -1,8 +1,14 @@
 /* header style */
+.navbar-custom {
+	background-color: #333333;
+}
 .navbar-custom .navbar-brand:hover {
     background-color: #CD5C5C;
 }
-
+#navbar .navbar-li a {
+	color: #FFFFFF;
+	font-size: 1.2em;
+}
 .navbar-custom .navbar-li:hover {
     background-color: #CD5C5C;
 }
@@ -11,66 +17,56 @@
 /* footer style */
 
 footer {
-    background-color: rgb(238, 238, 238);
+    background-color: #333333;
+	margin-top: 50px;
+	padding-top: 25px;
 }
 
-footer i {
-    color: gray;
+footer .container {
+	height: 250px;
 }
 
 
-footer #span-share {
-    display: inline-block;
-    background-color: gray;
-    color: white;
-    font-size: 15px;
-    font-weight: normal;
-    position: absolute;
-    height: 31px;
-    left:-25px;
-    padding: 5px 2px 0px 2px;
+footer #div-share {
+	margin: auto;
+	width: 295px;
 }
 
-footer #span-like {
-    display: inline-block;
-    background-color: gray;
-    color: white;
-    font-size: 15px;
-    font-weight: normal;
-    position: absolute;
-    height: 31px;
-    left:266px;
-    padding: 5px 2px 0px 2px;
+footer #div-share span {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	padding-top: 11px;
+	background-color: #222222;
+	margin: 10px;
 }
 
-footer a span {
-    display: inline-block;
-    height: 31px;
-    width: 60px;
-    padding-left: 17px;
-    padding-top: 2px;
+footer #div-share a {
+	color: #BBBBBB;
+}
+
+footer #div-share .span-good {
+	padding-left: 12px;	
+}
+
+footer #div-share .span-google {
+	padding-left: 8px;
+}
+
+footer #div-share .span-fb {
+	padding-left: 17px;
 }
 
 footer #div-copyright {
-    padding-top: 5px;
+	text-align: center;
+	background-color: #333333;
+	color: gray;
+	padding-bottom: 10px;
 }
 
-footer #google-plusone {
-    display: inline-block;
-    position: relative;
-    top: 2px;
-    left: 100px;
-    padding-bottom: 0px;
-    margin-bottom: 0px;
-    height: 10px;
-}
 
-footer #fb-like {
-    display: inline-block;
-    position: absolute;
-    top: 6px;
-    left: 300px;
-}
+
 
 footer .btn_share{
     color: gray;

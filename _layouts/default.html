@@ -1,161 +1,167 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-     
-    <title>{{ page.title }}</title>
 
-    <meta property="og:title"         content="Father like Son" />
-    <meta property="og:description"   content="YiTiaoDaHeBoLangKuan" />
+		<title>{{ page.title }}</title>
 
-    
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<meta property="og:title"         content="Father like Son" />
+		<meta property="og:description"   content="YiTiaoDaHeBoLangKuan" />
 
-    <!-- Latest compiled bootstrap JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- google application js -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 
-    <!-- font awesome icon -->
-    <script src="https://use.fontawesome.com/be119254ee.js"></script>
+		<!-- jquery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <!-- academic icon -->
-    <link rel="stylesheet" href="css/academicons.css"/>
+		<!-- Latest compiled bootstrap JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- Custom javascript -->
-    <script src="main.js"></script>
-    
-    <!-- Custom styles -->
-    <link rel="stylesheet" type="text/css" href="main.css"/>
+		<!-- google application js -->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
 
-    <!-- favicon -->
-    <link rel="icon" type="image/png" href="imgs/favicon-16x16.png" sizes="16x16" />
+		<!-- font awesome icon -->
+		<script src="https://use.fontawesome.com/be119254ee.js"></script>
 
-  </head>
+		<!-- academic icon -->
+		<link rel="stylesheet" href="css/academicons.css"/>
 
-  
-  <body>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
-      fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    </script>
-   
-      
+		<!-- Custom javascript -->
+		<script src="main.js"></script>
 
-    
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse navbar-custom">
-      <div class="container">
-	<div class="navbar-header">
-	  <button type="button" class="navbar-toggle collapsed" 
-		  data-toggle="collapse" data-target="#navbar" 
-		  aria-expanded="false" aria-controls="navbar">
-	    <span class="sr-only">Toggle navigation</span>
-	    <div class="icon-bar"></div>
-	    <div class="icon-bar"></div>
-	    <div class="icon-bar"></div>
-	  </button>
-	  <a id="a_nav_header" class="navbar-brand" href="index.html">
-	    <i class="fa fa-user-circle" id="i_home"></i>
-	    Home
-	  </a>
-	</div>
-	<div id="navbar" class="navbar-collapse collapse">
-	  <ul class="nav navbar-nav">
-	    <li class="navbar-li">
-	      <a href="publications.html" id="a_nav_publications">Publications</a>
-	    </li>
-	    <li class="navbar-li">
-	      <a href="#contact">Projects</a>
-	    </li>
-	    <li class="navbar-li">
-	      <a href="#">Fun</a>
-	    </li>
-	    <li class="navbar-li">
-	      <a href="#">My Cats</a>
-	    </li>
-	    <li class="navbar-li">
-	      <a href="jenny.html" id="a_nav_jenny">Jenny's Art Work</a>
-	    </li>
-	  </ul>
-	  <ul class="nav navbar-nav navbar-right">
-	    <li class="navbar-li">
-	      <a href="#">Contact</a>
-	    </li>
-	  </ul>
-	</div>
-	<!--/.nav-collapse -->
-      </div>
-    </nav>
+		<!-- Custom styles -->
+		<link rel="stylesheet" type="text/css" href="main.css"/>
 
-    <!-- page content -->
+		<!-- favicon -->
+		<link rel="icon" type="image/png" href="imgs/favicon-16x16.png" sizes="16x16" />
 
-    {{ content }}
+	</head>
 
- 
-    <!-- Site footer -->
-    <footer class="container-fluid">
-      <div class="container">
-	<div class="row">
-	  <div id="div-copyright" class="col-md-7 col-sm-4 col-xs-3">
-	    &copy; 2016-2017 Hongchuan Wei
-	  </div>
-	  <div class="col-md-5 col-sm-8 col-xs-9 div-share">
-	    <span id="span-share">share</span>
-	    
-	    <a id="a_weibo" target="_blank">
-	      <span> <i class="fa fa-weibo fa-2x "></i> </span>
-	    </a>
 
-	    <a id="a_twitter" target="_blank">
-	      <span> <i class="fa fa-twitter fa-2x"></i> </span>
-	    </a>
+	<body>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+		  fjs.parentNode.insertBefore(js, fjs);
+		  }(document, 'script', 'facebook-jssdk'));
+		</script>
 
-	    <a id="a_google_plus" target="_blank">
-	      <span> <i class="fa fa-google-plus-official fa-2x"></i> </span>
-	    </a>
 
-	    <a id="a_facebook" target="_blank">
-	      <span> <i class="fa fa-facebook fa-2x"></i> </span>
-	    </a>
 
-	    <div id="span-like">like</div>
-	    
-	    <!-- Your fb like button code -->
-	    <span>
-	      <div id="fb-like" class="fb-like"
-		   data-layout="button_count"
-		   data-action="like"
-		   data-size="small"
-		   data-show-faces="false"
-		   data-share="false">
-	      </div>
-	    </span>
 
-	    <span id="google-plusone">
-	      <div 
-		   class="g-plusone" data-size="standard(bubble)" ></div>
-	    </span>
-	  </div>
-	</div>
-      </div>
-    </footer>
-  </body>
+		<!-- Fixed navbar -->
+		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse navbar-custom">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" 
+							data-toggle="collapse" data-target="#navbar" 
+							aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<div class="icon-bar"></div>
+						<div class="icon-bar"></div>
+						<div class="icon-bar"></div>
+					</button>
+					<a id="a_nav_header" class="navbar-brand" href="index.html">
+						<i class="fa fa-user-circle" id="i_home"></i>
+						Home
+					</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="navbar-li">
+							<a href="publications.html" id="a_nav_publications">Publications</a>
+						</li>
+						<li class="navbar-li">
+							<a href="#contact">Projects</a>
+						</li>
+						<li class="navbar-li">
+							<a href="#">Fun</a>
+						</li>
+						<li class="navbar-li">
+							<a href="#">My Cats</a>
+						</li>
+						<li class="navbar-li">
+							<a href="jenny.html" id="a_nav_jenny">Jenny's Art Work</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="navbar-li">
+							<a href="#">Contact</a>
+						</li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</nav>
 
-  
+		<!-- page content -->
+
+		{{ content }}
+
+
+		<!-- Site footer -->
+		<footer class="container-fluid">
+			<div class="container">
+				<div id="div-share">
+					<a id="a_weibo" target="_blank">
+						<span class="span-good"> 
+							<i class="fa fa-weibo fa-2x"></i>
+						</span>
+					</a>
+					<a id="a_twitter" target="_blank">
+						<span class="span-good"> 
+							<i class="fa fa-twitter fa-2x"></i> 
+						</span>
+					</a>
+					<a id="a_google_plus" target="_blank">
+						<span class="span-google"> 
+							<i class="fa fa-google-plus fa-2x"></i> 
+						</span>
+					</a>
+
+					<a id="a_facebook" target="_blank">
+						<span class="span-fb"> 
+							<i class="fa fa-facebook fa-2x"></i> 
+						</span>
+					</a>
+				</div>
+				<div class="row">
+					<div class="col-md-7 col-sm-4 col-xs-3"></div>
+					<div class="col-md-2 col-sm-4 col-xs-4 div-share">
+					
+					</div>
+					<div class="col-md-2 col-sm-4 col-xs-5">
+						<!-- Your fb like button code -->
+						<span>
+							<div id="fb-like" class="fb-like"
+							   data-layout="button_count"
+							   data-action="like"
+							   data-size="small"
+							   data-show-faces="false"
+							   data-share="false">
+							</div>
+						</span>
+
+						<span id="google-plusone">
+							<div class="g-plusone" data-size="standard(bubble)" ></div>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="div-copyright">
+				&copy; 2016-2017 Hongchuan Wei
+			</div>
+		</footer>
+	</body>
+
+
 </html>
 

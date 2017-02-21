@@ -5,11 +5,11 @@ var SN_COLOR = [
     "rgb(223, 66, 60)", // google color
     "rgb(57, 90, 147)", // facebook color
 ];
-var FOOTER_COLOR = "rgb(238, 238, 238)";
+var FOOTER_COLOR = "#222222";
 var WB_TEXT = "&title=Hongchuan's website";
 var TT_TEXT = "&amp;text=Hongchuan's%20website%20&amp;hashtags=hongchuanwebsite";
 var FB_TEXT = "&description=Hongchuan's website";
-var SHARE_BTN_DEFAULT_COLOR = "gray";
+var SHARE_BTN_DEFAULT_COLOR = "#BBBBBB";
 // navigator colors
 var NAV_BG_COLOR_SELECTED = "rgb(199,0,57)";
 var NAV_BG_COLOR_DEFAULT = "rgb(34,34,34)";
@@ -33,18 +33,18 @@ $(document).ready(function(){
     
 
     // span hover effect
-    $(".div-share a span").each(function(index){
-	var tmpColor = SN_COLOR[index];
-	$(this).hover(
-	    function(){
-		$(this).children().css({"color": "white"}); // the icon is the only child
-		$(this).css({"background-color": tmpColor})
-	    },
-	    function(){
-		$(this).children().css({"color": SHARE_BTN_DEFAULT_COLOR}); 
-		$(this).css({"background-color": FOOTER_COLOR})
-	    }
-	);
+    $("#div-share a span").each(function(index){
+		var tmpColor = SN_COLOR[index];
+		$(this).hover(
+			function(){
+				$(this).children().css({"color": "white"}); // the icon is the only child
+				$(this).css({"background-color": tmpColor})
+			},
+			function(){
+				$(this).children().css({"color": SHARE_BTN_DEFAULT_COLOR}); 
+				$(this).css({"background-color": FOOTER_COLOR})
+			}
+		);
     });
 
 });

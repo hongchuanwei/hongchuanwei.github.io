@@ -29,51 +29,14 @@ $(document).ready(function(){
 		});
 		setTimeout(toggleCursor, 1500, isToggled);
     };
-
-    // The flipping letters
-    /*if (!String.format) {
-		String.format = function(format) {
-			var args = Array.prototype.slice.call(arguments, 1);
-			return format.replace(/{(\d+)}/g, function(match, number) { 
-			return typeof args[number] != 'undefined'
-				? args[number] 
-				: match
-			;
-			});
-		};
-    }
-
-    
-
-    var textForDisplay = "This is my website";
-    var i;
-    for(i of textForDisplay) {
-		$("#p-colorful").append(String.format('<span class="span-color">{0}</span>', i));
-    }
-
-    var color="red";
-   
-    $(".span-color").each(function() {
-		$(this).mouseenter(function(){
-			var offsets = $(this).offset();
-			$(this).css({
-				"background-color": colors[Math.floor((Math.random() * 4))],
-				"display": "inline-block",
-				"position": "relative",
-				"left": "10px",
-				"top": "20px"
-			});
-		});
-    });*/
-	
 	
 	
 	var description = "This is a test of my description on the home page. I need a really looooooooooog sentence to test this.";
 
 
 
-	drawDescription(description, 20, 15, 30);
+	/*drawDescription(description, 20, 15, 30);
 
-	bounceBubbles();
+	bounceBubbles();*/
 
 });
