@@ -137,8 +137,15 @@ function phraseToHex(phrase) {
 }
  
 function initEventListeners() {
-    $(window).bind('resize', updateCanvasDimensions).bind('mousemove', onMove);
- 
+    //$(window).bind('resize', updateCanvasDimensions).bind('mousemove', onMove);
+	
+	$(window).on('resize', function() {
+		updateCanvasDimensions();
+		addPointsToCollection();
+	});
+		
+	$(window).bind('mousemove', onMove);
+	
     canvas.ontouchmove = function (e) {
         e.preventDefault();
         onTouchMove(e);
@@ -151,8 +158,6 @@ function initEventListeners() {
  
 function updateCanvasDimensions() {
 	
-	can = canvas[0]; // Get the DOM object in the jQuery object
-	
 	canvasWidth = this.div.width();
     canvasHeight = this.div.height();
 	
@@ -162,8 +167,6 @@ function updateCanvasDimensions() {
 	can.style.width = canvasWidth + "px";
     can.style.height = canvasHeight + "px";
 	can.getContext("2d").setTransform(PIXEL_RATIO, 0, 0, PIXEL_RATIO, 0, 0);
-	
-	
 	
     draw();
 }
@@ -216,9 +219,15 @@ function update(reset) {
  * @param {number} letterSpace Empty space between letters
  * @param {number} lineSpace Empty space between lines
  */
-function drawDescription(description, fontSize, letterSpace, lineSpace) {
+function drawDescription() {
     updateCanvasDimensions();
-    var g = [];
+    addPointsToCollection();
+    initEventListeners();
+}
+
+
+function addPointsToCollection() {
+	var g = [];
 	var hPadding = 100;
 	var vPadding = 100;
     var xPos = hPadding; // horizontal position of letter
@@ -246,7 +255,6 @@ function drawDescription(description, fontSize, letterSpace, lineSpace) {
  
     pointCollection = new PointCollection();
     pointCollection.points = g;
-    initEventListeners();
 }
  
 window.reset = false;
@@ -278,11 +286,16 @@ var PIXEL_RATIO = (function () {
 
 var div = $("#div-canvas"); 
 var canvas = $("#canvas-description");
-
+var can = canvas[0]; // Get the DOM object in the jQuery object
 var canvasHeight;
 var canvasWidth;
 var ctx;
 var pointCollection;
+
+var description = "This is a test of my description on the home page. I need a really looooooooooog sentence to test this.";
+var fontSize = 20;
+var letterSpace = 15;
+var lineSpace = 30;
 
 var pink = "#ff66b3";
 var pink2 = "#ff0066";

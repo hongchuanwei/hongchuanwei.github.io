@@ -35,7 +35,7 @@ $(document).ready(function(){
 
 
 
-	drawDescription(description, 20, 15, 30);
+	drawDescription();
 
 	bounceBubbles();
 
