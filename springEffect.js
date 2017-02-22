@@ -1,3 +1,5 @@
+
+
 function Vector(x, y, z) {
     this.x = x;
     this.y = y;
@@ -148,14 +150,21 @@ function initEventListeners() {
 }
  
 function updateCanvasDimensions() {
-	canvas.attr({
-        height: this.div.height(),
-        width: this.div.width()
-    });
-
-    canvasWidth = canvas.width();
-    canvasHeight = canvas.height();
-
+	
+	can = canvas[0]; // Get the DOM object in the jQuery object
+	
+	canvasWidth = this.div.width();
+    canvasHeight = this.div.height();
+	
+	can.width = canvasWidth * PIXEL_RATIO;
+	can.height = canvasHeight * PIXEL_RATIO;
+	
+	can.style.width = canvasWidth + "px";
+    can.style.height = canvasHeight + "px";
+	can.getContext("2d").setTransform(PIXEL_RATIO, 0, 0, PIXEL_RATIO, 0, 0);
+	
+	
+	
     draw();
 }
  
@@ -199,63 +208,6 @@ function update(reset) {
         pointCollection.update(reset);
 }
  
-function drawName(name, letterColors) {
-    updateCanvasDimensions();
-    var g = [];
-    var offset = 0;
- 
-    function addLetter(cc_hex, ix, letterCols) {
-        if (typeof letterCols !== 'undefined') {
-            if (Object.prototype.toString.call(letterCols) === '[object Array]' && Object.prototype.toString.call(letterCols[0]) === '[object Array]') {
-                letterColors = letterCols;
-            }
-            if (Object.prototype.toString.call(letterCols) === '[object Array]' && typeof letterCols[0] === "number") {
-                letterColors = [letterCols];
-            }
-        } else {
-            // if undefined set black
-            letterColors = [[0, 0, 27]];
-        }
- 
-        if (document.alphabet.hasOwnProperty(cc_hex)) {
-            var chr_data = document.alphabet[cc_hex].P;
-            var bc = letterColors[ix % letterColors.length];
- 
-            for (var i = 0; i < chr_data.length; ++i) {
-                point = chr_data[i];
- 
-                g.push(new Point(point[0] + offset,
-                    point[1],
-                    0.0,
-                    point[2],
-                    makeColor(bc, point[3])));
-            }
-            offset += document.alphabet[cc_hex].W;
-        }
-    }
- 
-    var hexphrase = phraseToHex(name);
- 
-    var col_ix = -1;
-    for (var i = 0; i < hexphrase.length; i += 2) {
-        var cc_hex = "A" + hexphrase.charAt(i) + hexphrase.charAt(i + 1);
-        if (cc_hex != "A20") {
-            col_ix++;
-        }
-        addLetter(cc_hex, col_ix, letterColors);
-    }
- 
-    for (var j = 0; j < g.length; j++) {
-        g[j].curPos.x = (canvasWidth / 2 - offset / 2) + g[j].curPos.x;
-        g[j].curPos.y = (canvasHeight / 2 - 105) + g[j].curPos.y;
-        g[j].originalPos.x = (canvasWidth / 2 - offset / 2) + g[j].originalPos.x;
-        g[j].originalPos.y = (canvasHeight / 2 - 105) + g[j].originalPos.y;
-    }
- 
-    pointCollection = new PointCollection();
-    pointCollection.points = g;
-    initEventListeners();
-}
 
 /*
  * Draw letters in the description in the canvas
@@ -311,8 +263,22 @@ $(window).mouseenter(function () {
     window.reset = false;
 });
 
+// Pixel ration for high definition screen
+var PIXEL_RATIO = (function () {
+    var ctxTmp = document.createElement("canvas").getContext("2d"),
+        dpr = window.devicePixelRatio || 1,
+        bsr = ctxTmp.webkitBackingStorePixelRatio ||
+              ctxTmp.mozBackingStorePixelRatio ||
+              ctxTmp.msBackingStorePixelRatio ||
+              ctxTmp.oBackingStorePixelRatio ||
+              ctxTmp.backingStorePixelRatio || 1;
+
+    return dpr / bsr;
+})();
+
 var div = $("#div-canvas"); 
 var canvas = $("#canvas-description");
+
 var canvasHeight;
 var canvasWidth;
 var ctx;
@@ -331,6 +297,6 @@ var numColor = letterColors.length;
 document.rotationForce = 0.0;
 document.Friction = 0.85;
 
-
  
 setTimeout(updateCanvasDimensions, 30);
+
