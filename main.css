@@ -2,8 +2,14 @@
 .navbar-custom {
 	background-color: #333333;
 }
+
+.navbar-custom .navbar-brand {
+	color: #FFFFFF;
+}
+
 .navbar-custom .navbar-brand:hover {
     background-color: #CD5C5C;
+	color: #FFFFFF;
 }
 #navbar .navbar-li a {
 	color: #FFFFFF;

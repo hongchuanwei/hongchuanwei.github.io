@@ -30,11 +30,6 @@ $(document).ready(function(){
 		setTimeout(toggleCursor, 1500, isToggled);
     };
 	
-	
-	var description = "This is a test of my description on the home page. I need a really looooooooooog sentence to test this.";
-
-
-
 	drawDescription();
 
 	bounceBubbles();
