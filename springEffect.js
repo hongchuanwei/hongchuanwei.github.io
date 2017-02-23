@@ -310,7 +310,7 @@ var description = ["This is Hongchuan.", "I am currently a <web> developer.",
   "I used to be a vehicle/mechanical engineer.",
   "I also love chess engine and arduino."];
 var colorPair ={
-	words: ["Hongchuan.", "<web>", "machine", "learning.", "vechile/mechanical", "chess", "engine", "arduino."],
+	words: ["Hongchuan.", "<web>", "machine", "learning.", "vehicle/mechanical", "chess", "engine", "arduino."],
 	colors: ["#66CCFF", "#44b3c2", "#E45641","#E45641", "#F1A94E", "#462066","#462066","#462066"]
 }
 var fontSize = 25;
