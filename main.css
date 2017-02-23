@@ -11,20 +11,22 @@
     background-color: #CD5C5C;
 	color: #FFFFFF;
 }
-#navbar .navbar-li a {
+#navbar .navbar-effective a {
 	color: #FFFFFF;
 	font-size: 1.2em;
 }
-.navbar-custom .navbar-li:hover {
+.navbar-custom .navbar-effective:hover {
     background-color: #CD5C5C;
 }
 
+#google-plusone {
+	padding-top:12px;
+}
 
 /* footer style */
 
 footer {
     background-color: #333333;
-	margin-top: 50px;
 	padding-top: 25px;
 }
 
@@ -81,8 +83,12 @@ footer .btn_share{
 
 /* index style */
 div.div-text {
-    padding-top: 60px;
+    padding-top: 150px;
     font-family: "Courier New", Courier, "Liberation Mono", monospace;
+	background: url(imgs/background.jpg);
+	background-repeat: no-repeat;
+	background-size:cover;
+	height: 1200px;
 }
 div.div-text h1 {
     font-size: 4.5em;
@@ -101,11 +107,9 @@ div.div-text p {
     width: 40px;
 }
 #div-canvas {
-	border: 1px solid green;
-	height: 800px;
+	height: 380px;
 }
 #canvas-description {
-	border: 1px solid red;
 	margin:auto;
 }
 

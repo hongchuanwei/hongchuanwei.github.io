@@ -44,18 +44,6 @@
 
 
 	<body>
-		<div id="fb-root"></div>
-		<script>(function(d, s, id) {
-		  var js, fjs = d.getElementsByTagName(s)[0];
-		  if (d.getElementById(id)) return;
-		  js = d.createElement(s); js.id = id;
-		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
-		  fjs.parentNode.insertBefore(js, fjs);
-		  }(document, 'script', 'facebook-jssdk'));
-		</script>
-
-
-
 
 		<!-- Fixed navbar -->
 		<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -76,7 +64,8 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="navbar-li">
+
+						<li class="navbar-li navbar-effective">
 							<a href="publications.html" id="a_nav_publications">Publications</a>
 						</li>
 						<li class="navbar-li">
@@ -89,19 +78,17 @@
 							<a href="#">My Cats</a>
 						</li>
 						<li class="navbar-li">
-							<a href="jenny.html" id="a_nav_jenny">Jenny's Art Work</a>
+							<a href="#" id="a_nav_jenny">Jenny's Art Work</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="navbar-li">
-							<a href="#">Contact</a>
-						</li>
+						<div id="google-plusone">
+							<div class="g-plusone" data-size="standard" ></div>
+						</div>
 					</ul>
 				</div>
-				<!--/.nav-collapse -->
 			</div>
 		</nav>
-
 		<!-- page content -->
 
 		{{ content }}
@@ -139,20 +126,7 @@
 					
 					</div>
 					<div class="col-md-2 col-sm-4 col-xs-5">
-						<!-- Your fb like button code -->
-						<span>
-							<div id="fb-like" class="fb-like"
-							   data-layout="button_count"
-							   data-action="like"
-							   data-size="small"
-							   data-show-faces="false"
-							   data-share="false">
-							</div>
-						</span>
 
-						<span id="google-plusone">
-							<div class="g-plusone" data-size="standard(bubble)" ></div>
-						</span>
 					</div>
 				</div>
 			</div>

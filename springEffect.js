@@ -106,13 +106,11 @@ function Point(x, y, z, fontSize, color, letter) {
     };
  
     this.draw = function (dx, dy, reset) {
-		//ctx.fillStyle = this.color;
-		
 		if(this.curPos.z>1.1) {
 			var colorIndex = (Math.floor(this.curPos.z*3))%numColor; 
 			ctx.fillStyle = letterColors[colorIndex];
 		} else {
-			ctx.fillStyle = "#000000";
+			ctx.fillStyle = this.color;
 		}
 				
 		ctx.font = this.fontSize +"px" + " Courier new";
@@ -228,30 +226,46 @@ function drawDescription() {
 
 function addPointsToCollection() {
 	var g = [];
-	var hPadding = 100;
+	var hPadding = 50;
 	var vPadding = 100;
     var xPos = hPadding; // horizontal position of letter
 	var yPos = vPadding; // vertical position of letter
 	
-	
-	// Split the description into words 
-	var words = description.split(" ");
-	
-	// Loop through all words
-	for(var word of words ) {
-		if(xPos + word.length*letterSpace > canvasWidth - hPadding) {
-			xPos = hPadding;
-			yPos += lineSpace;
-		} 
+	for (line of description) {
 		
-		// Put all letters in a word in the canvas
-		for(var letter of word) {
+		// Split the description into words 
+		var words = line.split(" ");
+		
+		// Loop through all words
+		for(var word of words ) {
+			console.log(word);
+			if(xPos + word.length*letterSpace > canvasWidth - hPadding) {
+				xPos = hPadding;
+				yPos += lineSpace;
+			} 
+			
+			// get special color in pair
+			var letterColor = "#5D4C46";
+			var colorIndex = colorPair.words.indexOf(word);
+			if(colorIndex !== -1 ) {
+				letterColor = colorPair.colors[colorIndex];
+			}
+			
+			
+			// Put all letters in a word in the canvas
+			for(var letter of word) {
+				xPos += letterSpace;
+				g.push(new Point(xPos, yPos, 1.0, fontSize, letterColor, letter));
+			}
 			xPos += letterSpace;
-			g.push(new Point(xPos, yPos, 0.0, fontSize, "black", letter));
+			g.push(new Point(xPos, yPos, 0, fontSize, letterColor, " "));
 		}
-		xPos += letterSpace;
-		g.push(new Point(xPos, yPos, 0, fontSize, "black", " "));
+		
+		// return cursor to beginning of line
+		xPos = hPadding;
+		yPos += parSpace;
 	}
+	
  
     pointCollection = new PointCollection();
     pointCollection.points = g;
@@ -292,10 +306,18 @@ var canvasWidth;
 var ctx;
 var pointCollection;
 
-var description = "This is a test of my description on the home page. I need a really looooooooooog sentence to test this.";
-var fontSize = 20;
+var description = ["Hi, I am currently a <web> developer.",
+  "My graduate work is related to machine learning.",
+  "I used to be a vechile/mechanical engineer.",
+  "I also love chess engine and arduino"];
+var colorPair ={
+	words: ["<web>", "machine", "learning.", "vechile/mechanical", "chess", "engine", "arduino"],
+	colors: ["#44b3c2", "#E45641","#E45641", "#F1A94E", "#462066","#462066","#462066"]
+}
+var fontSize = 25;
 var letterSpace = 15;
 var lineSpace = 30;
+var parSpace = 60;
 
 var pink = "#ff66b3";
 var pink2 = "#ff0066";
