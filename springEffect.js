@@ -238,7 +238,6 @@ function addPointsToCollection() {
 		
 		// Loop through all words
 		for(var word of words ) {
-			console.log(word);
 			if(xPos + word.length*letterSpace > canvasWidth - hPadding) {
 				xPos = hPadding;
 				yPos += lineSpace;

@@ -19,7 +19,7 @@ $(document).ready(function(){
 			ftColor = "white";
 			isToggled = 1;
 		} else {
-			bgColor = "white";
+			bgColor = "transparent";
 			ftColor = "#e52662";
 			isToggled = 0;
 		}
