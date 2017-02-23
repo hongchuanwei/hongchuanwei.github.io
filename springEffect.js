@@ -307,7 +307,7 @@ var pointCollection;
 
 var description = ["This is Hongchuan.", "I am currently a <web> developer.",
   "My graduate work is related to machine learning.",
-  "I used to be a vechile/mechanical engineer.",
+  "I used to be a vehicle/mechanical engineer.",
   "I also love chess engine and arduino."];
 var colorPair ={
 	words: ["Hongchuan.", "<web>", "machine", "learning.", "vechile/mechanical", "chess", "engine", "arduino."],
