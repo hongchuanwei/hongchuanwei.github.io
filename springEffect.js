@@ -12,7 +12,7 @@ function Vector(x, y, z) {
 }
  
 function PointCollection() {
-    this.mousePos = new Vector(0, 0);
+    this.mousePos = new Vector(-100, -100);
     this.pointCollectionX = 0;
     this.pointCollectionY = 0;
     this.points = [];
@@ -49,7 +49,7 @@ function PointCollection() {
             if (window.reset) {
                 this.pointCollectionX = 0;
                 this.pointCollectionY = 0;
-                this.mousePos = new Vector(0, 0);
+                this.mousePos = new Vector(-100, 100);
             }
  
             point.draw(this.pointCollectionX, this.pointCollectionY, reset);
@@ -212,10 +212,6 @@ function update(reset) {
 
 /*
  * Draw letters in the description in the canvas
- * @param {string} description The description to be displayed
- * @param {number} fontSize Font size
- * @param {number} letterSpace Empty space between letters
- * @param {number} lineSpace Empty space between lines
  */
 function drawDescription() {
     updateCanvasDimensions();
