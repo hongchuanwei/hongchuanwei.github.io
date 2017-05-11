@@ -24,6 +24,11 @@
 	padding-left: 15px;
 }
 
+/* body style */
+#main-body {
+	font-size: large;
+}
+
 /* footer style */
 
 footer {
@@ -85,14 +90,14 @@ footer .btn_share{
 /* index style */
 div.div-text {
     padding-top: 150px;
-    font-family: "Courier New", Courier, "Liberation Mono", monospace;
+    font-family: "Segoe UI", "Courier New", Courier, "Liberation Mono", monospace;
 	background: url(imgs/background.jpg);
 	background-repeat: no-repeat;
 	background-size:cover;
 	height: 1200px;
 }
 div.div-text h1 {
-    font-size: 4.5em;
+    font-size: 3.5em;
 	font-weight: bold;
 }
 div.div-text p {
@@ -116,6 +121,16 @@ div.div-text p {
 
 
 /* publication.html style */
+.paper .paper-title {
+	font-size: larger;
+	padding-bottom: 10px;
+}
+
+.paper .paper-abstract {
+	display: inline-block;
+	position: relative;
+	bottom: 2px;
+}
 
 .paper .col-md-2 img {
     width: 100%;
@@ -140,20 +155,23 @@ div.div-text p {
     float: left;
     clear: left;
     margin: 2px 0px 0px 0px;
-    height: 18px;
+	height: 20px;
     padding-top: 4px;
 }
 
 .paper .label-disabled {
-    padding-top: 3px;
-    margin: 2px 0px 0px 0px;
-    height: 18px;
+    padding-top: 2px;
+    margin: 0px 0px 0px 0px;
+	font-size: small;
+	height: 20px;
     background-color: rgb(155, 155, 155);
+	position: relative;
+	bottom: 2.5px;
 }
 
 div.resource_line {
     clear: left;
-    margin-top:2px;
+    margin-top:0px;
 }
 
 .paper .sub-header {
@@ -162,14 +180,15 @@ div.resource_line {
 }
 
 .paper a.btn {
-    height: 18px;
-    font-size: 11px;
-    
+    height: 20px;
+    font-size: small;
     padding-top: 0px;
     border: 0px;
-    padding-top: 1px;
+    padding-top: 0px;
     background-color: rgb(119,119, 119);
     color: white;
+	position: relative;
+	bottom: 2px;
 }
 
 .paper a.btn:hover {
@@ -199,22 +218,22 @@ div.resource_line {
 .tag {
     float:left;
     position:relative;
-    height: 18px;
-    margin:2px 0px 0px 20px;
-    font-size:11px;
+	top: 2px;
+    height: 20px;
+    margin:0px 0px 2px 20px;
+    font-size: small;
+	font-weight: 800;
     
     text-decoration:none;
     color:white;
     
-    padding:0.08em 0.417em 0.08em 0.917em;
+    padding:0.0em 0.6em 0.08em 0.917em;
     
-    /*border-top:1px solid #d99d38;
-    border-right:1px solid #d99d38;
-    border-bottom:1px solid #d99d38;*/
+    /*border:1px solid red;*/
     
     -webkit-border-radius:0 0.25em 0.25em 0;
     -moz-border-radius:0 0.25em 0.25em 0;
-    border-radius:0 0.25em 0.25em 0;
+    border-radius:0 0.4em 0.4em 0;
 
     z-index:100;
 }
@@ -223,12 +242,12 @@ div.resource_line {
     content:"";
     float:left;
     position:absolute;
-    top:0;
-    left:-9px;
+    top:0px;
+    left:-20px;
     width:0;
     height:0;
     border-style:solid;
-    border-width:9px 9px 9px 0;		
+    border-width:10px;
 }
 
 
@@ -236,13 +255,13 @@ div.resource_line {
     content:"";
     position:absolute;
     top:6px;
-    left:-2px;
+    left:-3px;
     float:left;
-    width:6px;
-    height:6px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    border-radius:3px;
+    width:8px;
+    height:8px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
     background:#fff;
     z-index:999;
 }
