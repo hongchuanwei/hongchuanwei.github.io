@@ -89,12 +89,14 @@ footer .btn_share{
 
 /* index style */
 div.div-text {
-    padding-top: 150px;
+    padding-top: 90px;
     font-family: "Segoe UI", "Courier New", Courier, "Liberation Mono", monospace;
-	background: url(imgs/background.jpg);
+	background: url(imgs/avalon.png);
+	background-color: rgb(240,239,235);
 	background-repeat: no-repeat;
-	background-size:cover;
-	height: 1200px;
+	background-size: auto;
+	background-position: right bottom;
+	height: 900px;
 }
 div.div-text h1 {
     font-size: 3.5em;
@@ -188,7 +190,7 @@ div.resource_line {
     background-color: rgb(119,119, 119);
     color: white;
 	position: relative;
-	bottom: 2px;
+	bottom: 1px;
 }
 
 .paper a.btn:hover {
