@@ -1,0 +1,202 @@
+/* publication.html style */
+.paper .paper-title {
+	font-size: larger;
+	padding-bottom: 10px;
+}
+
+.paper .paper-abstract {
+	display: inline-block;
+	position: relative;
+	bottom: 2px;
+}
+
+.paper .col-md-2 img {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 300px;
+    position: relative;
+    top: 10px;
+}
+
+.paper .col-md-3 img {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 300px;
+    position: relative;
+    top: 10px;
+}
+
+.paper .label-before-tag {
+    position: relative;
+    float: left;
+    clear: left;
+    margin: 2px 0px 0px 0px;
+	height: 20px;
+    padding-top: 4px;
+}
+
+.paper .label-disabled {
+    padding-top: 2px;
+    margin: 0px 0px 0px 0px;
+	font-size: small;
+	height: 20px;
+    background-color: rgb(155, 155, 155);
+	position: relative;
+	bottom: 2.5px;
+}
+
+div.resource_line {
+    clear: left;
+    margin-top:0px;
+}
+
+.paper .sub-header {
+    color: gray;
+    margin: -9px 0px 0px 0px;
+}
+
+.paper a.btn {
+    height: 20px;
+    font-size: 14px;
+    padding-top: 0px;
+    border: 0px;
+    padding-top: 0px;
+    background-color: rgb(119,119, 119);
+    color: white;
+	position: relative;
+	bottom: 1px;
+}
+
+.paper a.btn:hover {
+    color: white;
+    background-color:rgb(217, 83, 79);
+    border: 0px;
+}
+
+.paper pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    margin-top: 4px;
+}
+
+.paper .div_bibtex {
+    display: none;
+}
+
+.badge-h2 {
+    font-size: 20px;
+}
+
+
+.tag {
+    float:left;
+    position:relative;
+	top: 2px;
+    height: 20px;
+    margin:0px 0px 2px 20px;
+    font-size: small;
+	font-weight: 800;
+    
+    text-decoration:none;
+    color:white;
+    
+    padding:0.0em 0.6em 0.08em 0.917em;
+    
+    /*border:1px solid red;*/
+    
+    -webkit-border-radius:0 0.25em 0.25em 0;
+    -moz-border-radius:0 0.25em 0.25em 0;
+    border-radius:0 0.4em 0.4em 0;
+
+    z-index:100;
+}
+
+.tag::before{
+    content:"";
+    float:left;
+    position:absolute;
+    top:0px;
+    left:-20px;
+    width:0;
+    height:0;
+    border-style:solid;
+    border-width:10px;
+}
+
+
+.tag::after{
+    content:"";
+    position:absolute;
+    top:6px;
+    left:-3px;
+    float:left;
+    width:8px;
+    height:8px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    background:#fff;
+    z-index:999;
+}
+
+
+.tag-primary {
+    background-color: rgb(44, 123, 178);
+}
+
+.tag-primary:before {
+    border-color:transparent rgb(44, 123, 178) transparent transparent;	
+}
+
+.tag-success {
+    background-color: rgb(83, 183, 104);
+}
+
+.tag-success:before {
+    border-color:transparent rgb(83, 183, 104) transparent transparent;	
+}
+
+.tag-info {
+    background-color: rgb(82, 193, 219);
+}
+
+.tag-info:before {
+    border-color:transparent rgb(82, 193, 219) transparent transparent;	
+}
+
+.tag-warning {
+    background-color: rgb(243, 172, 94);
+}
+
+.tag-warning:before {
+    border-color:transparent rgb(243, 172, 94) transparent transparent;	
+}
+
+.tag-pink {
+    background-color: #ff9999;
+}
+
+.tag-pink:before {
+    border-color:transparent #ff9999 transparent transparent;	
+}
+
+.tag-sn {
+    background-color: #ff6666;
+}
+
+.tag-sn:before {
+    border-color:transparent #ff6666 transparent transparent;	
+}
+
+.tag-target {
+    background-color: #cc99ff;
+}
+
+.tag-target:before {
+    border-color:transparent #cc99ff transparent transparent;	
+}
