@@ -40,7 +40,8 @@
 .paper .label-disabled {
     padding-top: 2px;
     margin: 0px 0px 0px 0px;
-	font-size: small;
+	font-size: 14px;
+	font-weight: 400;
 	height: 20px;
     background-color: rgb(155, 155, 155);
 	position: relative;
@@ -99,7 +100,7 @@ div.resource_line {
 	top: 2px;
     height: 20px;
     margin:0px 0px 2px 20px;
-    font-size: 14px;
+    font-size: 13.5px;
 	font-weight: 800;
     
     text-decoration:none;
