@@ -1,7 +1,9 @@
 // Constants
-NUM_GAMES = 2;
-
-
+var GAME_URL = [
+	"TicTacToe/TicTacToe.html",
+	"Gomoku.html"
+];
+var NUM_GAMES = GAME_URL.length;
 
 $(function() {
 
@@ -11,25 +13,17 @@ $(function() {
 	this.carouselLeft = $("#carousel-l");
 	this.carouselRight = $("#carousel-r");
 
-	// callback functions 
 
-	//this.initialize();
-	
-	 
-
-	this.containerDiv.html( this.gameIdx );	
+	this.containerDiv.load(GAME_URL[this.gameIdx]);
 
 	this.carouselLeft.click(arrowClicked.bind(this,-1));
 	this.carouselRight.click(arrowClicked.bind(this,1)); 
 
 
-	function initialize() {
-	}
-
 	function arrowClicked(increment) {
 		this.gameIdx += increment;
-		this.gameIdx %= NUM_GAMES;
-		this.containerDiv.html( this.gameIdx );
+		this.gameIdx = ((this.gameIdx % NUM_GAMES) + NUM_GAMES) % NUM_GAMES; // fix for js module
+		this.containerDiv.load(GAME_URL[this.gameIdx]);
 	}
 
 });
