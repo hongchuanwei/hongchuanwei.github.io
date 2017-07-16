@@ -301,9 +301,8 @@ var canvasWidth;
 var ctx;
 var pointCollection;
 
-var description = ["This is Hongchuan.", "I am currently a <web> developer.",
+var description = ["This is Hongchuan.", "I am a <web> developer.",
   "My graduate work is related to machine learning.",
-  "I used to be a vehicle/mechanical engineer.",
   "I also love chess engine and arduino."];
 var colorPair ={
 	words: ["Hongchuan.", "<web>", "machine", "learning.", "vehicle/mechanical", "chess", "engine", "arduino."],
@@ -328,5 +327,5 @@ document.rotationForce = 0.0;
 document.Friction = 0.85;
 
  
-setTimeout(updateCanvasDimensions, 30);
+setTimeout(updateCanvasDimensions, 5);
 
