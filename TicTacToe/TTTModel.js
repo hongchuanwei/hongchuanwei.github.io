@@ -1,6 +1,10 @@
-/* This is the model of the TicTacToe game */
+/**
+ * This is the model of the TicTacToe game
+ * @param {enum Piece} First piece to be played
+ * @param {enum Piece} Piece used by player
+ */
 
-function TTTModel (firstPiece) {
+function TTTModel (firstPiece, playerPiece) {
 	/******* properties *******/
 	this.__winningPatterns = [
       0x1c0,   // 0b111 000 000 (row 2)
@@ -28,6 +32,10 @@ function TTTModel (firstPiece) {
 	 * Who moves first
 	 */
 	this.__firstPiece = firstPiece;
+	/**
+	 * Player's piece
+	 */
+	this.__playerPiece = playerPiece;
 	/**
 	 * last piece played
 	 */
