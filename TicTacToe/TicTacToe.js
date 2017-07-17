@@ -33,8 +33,8 @@ $(new function() {
 	let containerDiv = $("#div-TicTacToe");
 	containerDiv.append( this.__board.canvas );
 	
-
-	
+	//containerDiv.click(__onCanvasClicked);
+	containerDiv.bind("click", {board: this.__board}, __onCanvasClicked);
 	// Initialize game states
 	//reset.apply(this);
 
@@ -47,7 +47,22 @@ $(new function() {
 	 	this.test = "aaaa";
 	}*/
 
+	/**
+	 * Handler for the mouse click event 
+	 * @param {Object} e - Mouse click event
+	 */
+	function __onCanvasClicked(e) {
+		let xPos = e.pageX - $(this).offset().left;
+		let yPos = e.pageY - $(this).offset().top; 
 
+		let board = e.data.board;
+		
+		let i = Math.floor( xPos*3/board.BOARD_LENGTH );
+		let j = Math.floor( yPos*3/board.BOARD_LENGTH );
+
+		
+		board.drawPiece(i, j, Piece.O);
+	}
 
 
 
