@@ -31,9 +31,8 @@ $(new function() {
 
 
 	let containerDiv = $("#div-TicTacToe");
-	containerDiv.append( this.__board.get_canvas() );
+	containerDiv.append( this.__board.canvas );
 	
-
 
 	
 	// Initialize game states
