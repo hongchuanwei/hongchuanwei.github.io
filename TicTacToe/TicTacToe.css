@@ -2,4 +2,5 @@
 	border: 2px solid blue;
 	width: 450px;
 	height: 450px;
+	pointer-events: none;
 }

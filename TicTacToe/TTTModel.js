@@ -60,7 +60,7 @@ function TTTModel (firstPiece, playerPiece) {
 
 		if(this.__lastPiece == Piece.X && this.__isWinner( this.__XPattern) ) {
 			return GameState.X_WIN;
-		} else if (this.__lastPiece==Piece.O && this.__iWinner( this.__OPattern)) {
+		} else if (this.__lastPiece==Piece.O && this.__isWinner( this.__OPattern)) {
 			return GameState.O_WIN;
 		}
 		// no one wins and out of step, then draw
@@ -123,7 +123,7 @@ function TTTModel (firstPiece, playerPiece) {
 	 * @param {int} pattern a pattern
 	 * @return {boolean} if this pattern wins the game
 	 */
-	this.__isWinner = function IsWinner(pattern) {
+	this.__isWinner = function isWinner(pattern) {
 		for (var i=0; i < this.__winningPatterns.length; i++) {
 			var aWinningPattern = this.__winningPatterns[i];
 			if ((aWinningPattern & pattern) == aWinningPattern) {

@@ -21,20 +21,29 @@ $(new function() {
 	 * Model of the game. Default is Player moves first 
 	 */
 	this.__model = new TTTModel(this.__firstPiece, PLAYER_PIECE);
-	
-
+	/**
+	 * View of the game.
+	 */
 	this.__board = new TTTBoard();
+	/**
+	 * The container div
+	 */
+	this.__containerDiv = $("#div-TicTacToe");
 
-	/******* Methods *******/
+	this.__statusDiv = $('<div/>');
+
+	/******* Delegatess *******/
+	/**
+	 * Canvas clicking delegate
+	 */
+	this.__onCanvasClicked = onCanvasClicked.bind(this);
 	
-		
 
-
-	let containerDiv = $("#div-TicTacToe");
-	containerDiv.append( this.__board.canvas );
 	
-	//containerDiv.click(__onCanvasClicked);
-	containerDiv.bind("click", {board: this.__board}, __onCanvasClicked);
+	this.__containerDiv.append( this.__board.canvas );
+	this.__containerDiv.append( this.__statusDiv );
+	this.__statusDiv.html( " test ");
+	this.__board.canvas.bind("click", this.__onCanvasClicked);
 	// Initialize game states
 	//reset.apply(this);
 
@@ -51,18 +60,32 @@ $(new function() {
 	 * Handler for the mouse click event 
 	 * @param {Object} e - Mouse click event
 	 */
-	function __onCanvasClicked(e) {
-		let xPos = e.pageX - $(this).offset().left;
-		let yPos = e.pageY - $(this).offset().top; 
-
-		let board = e.data.board;
+	function onCanvasClicked(e) {
+		let xPos = e.pageX - this.__containerDiv.offset().left;
+		let yPos = e.pageY - this.__containerDiv.offset().top;
+		
+		let board = this.__board;
+		let model = this.__model;
 		
 		let i = Math.floor( xPos*3/board.BOARD_LENGTH );
 		let j = Math.floor( yPos*3/board.BOARD_LENGTH );
 
-		
-		board.drawPiece(i, j, Piece.O);
+		let boardState = model.getGameState();
+
+		if (boardState !== GameState.CONTINUE) { return; }
+
+		let nextPiece = model.getNextPiece();
+
+		let isPieceSetSuccess = model.setPiece(i, j, nextPiece);
+
+		if (isPieceSetSuccess) {
+			board.drawPiece(i, j, nextPiece);
+
+			let boardState = model.getGameState();
+
+		}
 	}
+
 
 
 
