@@ -30,8 +30,7 @@ $(new function() {
 	 */
 	this.__containerDiv = $("#div-TicTacToe");
 
-	this.__statusDiv = $('<div/>');
-
+	
 	/******* Delegatess *******/
 	/**
 	 * Canvas clicking delegate
@@ -41,8 +40,6 @@ $(new function() {
 
 	
 	this.__containerDiv.append( this.__board.canvas );
-	this.__containerDiv.append( this.__statusDiv );
-	this.__statusDiv.html( " test ");
 	this.__board.canvas.bind("click", this.__onCanvasClicked);
 	// Initialize game states
 	//reset.apply(this);
