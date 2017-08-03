@@ -43,7 +43,7 @@ function TTTModel (firstPiece, playerPiece) {
 
 	/******* Public methods *******/
 	/**
-	 * Resets the game state 
+	 * Resets the game state
 	 */
 	this.reset = function reset() {
 		this.__XPattern = 0;
@@ -55,7 +55,7 @@ function TTTModel (firstPiece, playerPiece) {
 	/**
 	 * Get the state of the game
 	 * @returns {GameState} State of the game
-	 */ 
+	 */
 	this.getGameState = function getGameState() {
 
 		if(this.__lastPiece == Piece.X && this.__isWinner( this.__XPattern) ) {
@@ -73,7 +73,7 @@ function TTTModel (firstPiece, playerPiece) {
 	 * Get the piece on board
 	 * @param {int} i Row index
 	 * @param {int} j Column index
-	 * @returns {Piece} piece 
+	 * @returns {Piece} piece
 	 */
 	this.getPiece = function getPiece(i, j) {
 		if( i<0 || i>=3 || j<0 || j>=3 ) return Piece.INVALID;
@@ -93,14 +93,14 @@ function TTTModel (firstPiece, playerPiece) {
 		if( piece != this.getNextPiece() ) return false;
 		if( i<0 || i>=3 || j<0 || j>=3 ) return false;
 		if( this.__nPieceSet >= 9 ) return false;
-		if( (this.__XPattern | this.__OPattern) >> (i*3+j) == 1 ) return false;
-		
+		if( ((this.__XPattern | this.__OPattern) >> (i*3+j))&1 == 1 ) return false;
+
 		if(piece == Piece.X) {
 			this.__XPattern |= (1 << (i*3 + j) );
 		} else {
 			this.__OPattern |= (1 << (i*3 + j) );
 		}
-		
+
 		this.__lastPiece = piece;
 		this.__nPieceSet++;
 		return true;

@@ -7,7 +7,7 @@ class TTTBoard {
 
 	/******* constructor *******/
 	constructor() {
-		this.BOARD_LENGTH = 450; // board length in pixel 
+		this.BOARD_LENGTH = 450; // board length in pixel
 		this.WELL_LINE_WIDTH = 10;
 		this.WELL_STROKE_STYLE = "rgba(166, 166, 166, 0.7)"; // gray
 		this.PIECE_LINE_WIDTH = 10;
@@ -19,7 +19,7 @@ class TTTBoard {
 		this.__ctx = this.__canvas.get(0).getContext("2d");
 		this.__drawWell();
 	}
-	
+
 
 	/******* Methods *******/
 	/**
@@ -28,6 +28,14 @@ class TTTBoard {
 	 */
 	get canvas() {
 		return this.__canvas;
+	}
+
+	/**
+	 * reset board
+	 */
+	reset() {
+		this.__ctx.clearRect(0, 0, this.__canvas.get(0).width, this.__canvas.get(0).height);
+		this.__drawWell();
 	}
 
 	/**
@@ -79,7 +87,7 @@ class TTTBoard {
 	 */
 	__drawX(xPos, yPos) {
 		let ctx = this.__ctx;
-	
+
 		ctx.translate(xPos, yPos);
 		ctx.lineWidth = this.PIECE_LINE_WIDTH;
 		ctx.strokeStyle = this.X_STROKE_STYPE;
@@ -98,7 +106,7 @@ class TTTBoard {
 	 */
 	__drawO(xPos, yPos) {
 		let ctx = this.__ctx;
-	
+
 		ctx.translate(xPos, yPos);
 		ctx.lineWidth = this.PIECE_LINE_WIDTH;
 		ctx.strokeStyle = this.O_STROKE_STYPE;

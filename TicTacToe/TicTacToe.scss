@@ -1,0 +1,115 @@
+---
+# Tic Tac Toe style file
+---
+$color: #2194E0;
+
+#div-TicTacToe {
+	display: inline-block;
+	border: 1px solid green;
+	vertical-align: top;
+}
+
+#div-control {
+	height: 450px;
+	display: inline-block;
+	border: 1px solid black;
+	vertical-align: top;
+}
+
+#div-control-flex {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	border: 3px dashed red;
+}
+
+.div-TTTButton {
+	width: 210px;
+	height: 70px;
+	line-height: 70px;
+	font-size: 24px;
+	font-weight: 800;
+	border-radius: 0.5em;
+	transition: all 0.3s ease-in-out;
+	overflow: hidden;
+	position: relative;
+	background-color: #DCDCDC;
+	border: 0.5px solid gray;
+
+	.span-TTTButton {
+		position: relative;
+		left: 70px;
+	}
+
+	&:before {
+	    content: "";
+	    background-color: $color;
+	    height: 70px;
+	    width: 220px;
+	    display: block;
+	    position: absolute;
+	    top: 0;
+	    left: -220px;
+	    transform: translateX(0);
+	    transition: all 0.3s ease-in-out;
+	}
+}
+
+
+
+@mixin svg-TTTButton {
+	width: 48px;
+	height: 48px;
+	fill: #FFFFFF;
+	stroke-width: 10px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	transition: all 0.3s ease-in-out;
+}
+
+#div-xbutton {
+	&:hover {
+		background-color: $color;
+		color: #fff;
+		&:before {
+		  	transform: skewX(-45deg) translateX(400px);
+			transition: all 0.3s ease-in-out;
+		}
+	}
+
+	svg {
+		@include svg-TTTButton;
+		stroke: #FF8484;
+		fill: #FF8484;
+	}
+}
+
+#div-obutton {
+	&:hover {
+		background-color: $color;
+		color: #fff;
+		&:before {
+		  	transform: skewX(-45deg) translateX(400px);
+			transition: all 0.3s ease-in-out;
+		}
+		svg {
+			fill: $color;
+		}
+	}
+
+	svg {
+		@include svg-TTTButton;
+		stroke: #FFDBB7;
+		fill: #FFFFFF;
+
+	}
+}
+
+.TTTCanvas {
+	border: 2px solid blue;
+	width: 450px;
+	height: 450px;
+	pointer-events: none;
+}
