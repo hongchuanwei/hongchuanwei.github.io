@@ -49,11 +49,6 @@ $(new function() {
 
 	this.__resetDiv.bind("click", this.__onResetClicked);
 
-	// Initialize game states
-	//reset.apply(this);
-
-
-
 
 
 	/******* Methods *******/
@@ -75,6 +70,7 @@ $(new function() {
 
 		let board = this.__board;
 		let model = this.__model;
+		let AI = this.__AI;
 
 		let i = Math.floor( xPos*3/board.BOARD_LENGTH );
 		let j = Math.floor( yPos*3/board.BOARD_LENGTH );
@@ -90,12 +86,24 @@ $(new function() {
 		if (isPieceSetSuccess) {
 			board.drawPiece(i, j, nextPiece);
 
-			let boardState = model.getGameState();
+			boardState = model.getGameState();
 
+			if (boardState != GameState.CONTINUE) {
+				// play game ending movie
+				alert("player wins or draw");
+			} else {
+				let nextPos = AI.bestMove(model);
+				nextPiece = model.getNextPiece();
+				isPieceSetSuccess = model.setPiece(nextPos.xPos, nextPos.yPos, nextPiece);
+				if (!isPieceSetSuccess) { alert("sth wrong with AI"); }
+				boardState = model.getGameState();
+				if (boardState != GameState.CONTINUE) {
+					// play game ending movie
+					alert("computer wins or draw");
+				}
+			}
 		}
 	}
-
-
 
 
 });
