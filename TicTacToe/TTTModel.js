@@ -53,6 +53,27 @@ function TTTModel (firstPiece, playerPiece) {
 	};
 
 	/**
+	 * XPattern getter
+	 */
+	this.getXPattern = function getXPattern() {
+		return this.__XPattern;
+	}
+
+	/**
+	 * OPattern getter
+	 */
+	this.getOPattern = function getOPattern() {
+		return this.__OPattern;
+	}
+
+	/**
+	 * number of piece played getter
+	 */
+	this.getNumPiecePlayed = function getNumPiecePlayed() {
+		return this.__nPieceSet;
+	}
+
+	/**
 	 * Get the state of the game
 	 * @returns {GameState} State of the game
 	 */

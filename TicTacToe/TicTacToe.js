@@ -26,6 +26,10 @@ $(new function() {
 	 */
 	this.__board = new TTTBoard();
 	/**
+	 * AI
+	 */
+	this.__AI = new TTTAI();
+	/**
 	 * The container div
 	 */
 	this.__containerDiv = $("#div-TicTacToe");
@@ -93,9 +97,13 @@ $(new function() {
 				alert("player wins or draw");
 			} else {
 				let nextPos = AI.bestMove(model);
+				alert(nextPos.xPos + "   " + nextPos.yPos);
 				nextPiece = model.getNextPiece();
 				isPieceSetSuccess = model.setPiece(nextPos.xPos, nextPos.yPos, nextPiece);
 				if (!isPieceSetSuccess) { alert("sth wrong with AI"); }
+
+				board.drawPiece(nextPos.xPos, nextPos.yPos, nextPiece);
+
 				boardState = model.getGameState();
 				if (boardState != GameState.CONTINUE) {
 					// play game ending movie
