@@ -79,13 +79,13 @@ function TTTModel (firstPiece, playerPiece) {
 	 */
 	this.getGameState = function getGameState() {
 
-		if(this.__lastPiece == Piece.X && this.__isWinner( this.__XPattern) ) {
+		if(this.__lastPiece == Piece.X && this.isWinner( this.__XPattern) ) {
 			return GameState.X_WIN;
-		} else if (this.__lastPiece==Piece.O && this.__isWinner( this.__OPattern)) {
+		} else if (this.__lastPiece==Piece.O && this.isWinner( this.__OPattern)) {
 			return GameState.O_WIN;
 		}
 		// no one wins and out of step, then draw
-		if( this.__isDraw(this.__XPattern | this.__OPattern) ) return GameState.DRAW;
+		if( this.isDraw(this.__XPattern | this.__OPattern) ) return GameState.DRAW;
 		// otherwise, game goes on
 		return GameState.CONTINUE;
 	};
@@ -144,7 +144,7 @@ function TTTModel (firstPiece, playerPiece) {
 	 * @param {int} pattern a pattern
 	 * @return {boolean} if this pattern wins the game
 	 */
-	this.__isWinner = function isWinner(pattern) {
+	this.isWinner = function isWinner(pattern) {
 		for (var i=0; i < this.__winningPatterns.length; i++) {
 			var aWinningPattern = this.__winningPatterns[i];
 			if ((aWinningPattern & pattern) == aWinningPattern) {
@@ -159,7 +159,7 @@ function TTTModel (firstPiece, playerPiece) {
 	 * @param pattern all positions taken by pieces
 	 * @return if game is a draw
 	 */
-	this.__isDraw = function IsDraw(allPattern) {
+	this.isDraw = function IsDraw(allPattern) {
 		if(allPattern == 0b111111111) {
 			return true;
 		} else {

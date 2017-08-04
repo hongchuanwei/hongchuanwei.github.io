@@ -28,7 +28,7 @@ $(new function() {
 	/**
 	 * AI
 	 */
-	this.__AI = new TTTAI();
+	this.__AI = new TTTAI(this.__model);
 	/**
 	 * The container div
 	 */
@@ -96,8 +96,7 @@ $(new function() {
 				// play game ending movie
 				alert("player wins or draw");
 			} else {
-				let nextPos = AI.bestMove(model);
-				alert(nextPos.xPos + "   " + nextPos.yPos);
+				let nextPos = AI.bestMove();
 				nextPiece = model.getNextPiece();
 				isPieceSetSuccess = model.setPiece(nextPos.xPos, nextPos.yPos, nextPiece);
 				if (!isPieceSetSuccess) { alert("sth wrong with AI"); }
