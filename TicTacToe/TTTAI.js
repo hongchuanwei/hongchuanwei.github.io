@@ -18,7 +18,7 @@ class TTTAI {
 	 */
 	bestMove(model) {
 		let pos = this.__randomAlgorithm(model);
-		return this.convertPosToXY(pos);
+		return pos;
 	}
 
 	/**
@@ -50,7 +50,7 @@ class TTTAI {
 			movingBit = movingBit << 1;
 			pos += 1;
 		}
-		return pos-1;
+		return this.__convertPosToXY(pos-1);
 	}
 	
 	/**
@@ -58,7 +58,7 @@ class TTTAI {
 	 * @param pos position of piece: 0~8
 	 * @return posObj position object
 	 */
-	convertPosToXY(pos) {
+	__convertPosToXY(pos) {
 		let posObj = {};
 		posObj.xPos = Math.floor(pos/3);
 		posObj.yPos = pos % 3;
