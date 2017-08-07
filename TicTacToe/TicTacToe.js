@@ -14,6 +14,10 @@ $(new function() {
 
 	/******* Properties *******/
 	/**
+	 * If the game has started
+	 */
+	this.__isGameStarted = false;
+	/**
 	 * Who plays first. Default is player
 	 */
 	this.__firstPiece = PLAYER_PIECE;
@@ -37,6 +41,10 @@ $(new function() {
      * The restart button
 	 */
 	this.__resetDiv = $("#div-restart");
+	/**
+	 * The computer first button
+	 */
+	this.__computerDiv = $("#div-obutton");
 
 	/******* Delegatess *******/
 	/**
@@ -47,22 +55,35 @@ $(new function() {
 	 * reset delegate
 	 */
 	this.__onResetClicked = reset.bind(this);
+	/**
+	 * Computer button delegate
+	 */
+	this.__onComputerClicked = setAIFirst.bind(this);
 
 	this.__containerDiv.append( this.__board.canvas );
 	this.__board.canvas.bind("click", this.__onCanvasClicked);
 
 	this.__resetDiv.bind("click", this.__onResetClicked);
 
-
+	this.__computerDiv.bind("click", this.__onComputerClicked);
 
 	/******* Methods *******/
 	/**
 	 * Resets game
 	 */
 	function reset() {
+		this.__isGameStarted = false;
+		if ( this.__firstPiece !== AI_PIECE ) {
+			// always assumes player plays first
+			this.__firstPiece = PLAYER_PIECE; 
+			this.__model = new TTTModel(this.__firstPiece, PLAYER_PIECE);
+			this.__AI = new TTTAI(this.__model);
+		}
+		
 	 	this.__model.reset();
 		this.__board.reset();
 	}
+	
 
 	/**
 	 * Handler for the mouse click event
@@ -112,5 +133,26 @@ $(new function() {
 		}
 	}
 
+	/**
+	 * Handler for the computer button
+	 */
+	function setAIFirst() {
+		if (this.__isGameStarted) { return; }
+		this.__isGameStarted = true;
+
+		// update model and AI
+		this.__firstPiece = AI_PIECE; 
+		this.__model = new TTTModel(this.__firstPiece, PLAYER_PIECE);
+		this.__AI = new TTTAI(this.__model);
+
+		// make the first move
+		let nextPos = this.__AI.bestMove(AIAlgorithm.RANDOM);
+		let nextPiece = this.__model.getNextPiece();
+		
+		let isPieceSetSuccess = this.__model.setPiece(nextPos.xPos, nextPos.yPos, nextPiece);
+		if (!isPieceSetSuccess) { alert("sth wrong with AI"); }
+
+		this.__board.drawPiece(nextPos.xPos, nextPos.yPos, nextPiece);
+	}
 
 });

@@ -18,11 +18,20 @@ class TTTAI {
 	/******* methods *******/
 	/**
 	 * AI interface
+	 * @param algorithm AIAlgorithm the algorith used
 	 */
-	bestMove() {
-		//let pos = this.__randomAlgorithm();
-		//let pos = this.__miniMaxAlgorithm();
-		let pos = this.__miniMaxAlgorithmDepth();
+	bestMove(algorithm) {
+		let pos;
+		switch (algorithm) {
+			case AIAlgorithm.RANDOM:
+			    pos = this.__randomAlgorithm();
+			    break;
+			case AIAlgorithm.MINIMAX:
+			    pos = this.__miniMaxAlgorithm();
+			    break;
+			default:
+			    pos = this.__miniMaxAlgorithmDepth();
+		}
 		return pos;
 	}
 	
