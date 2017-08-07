@@ -21,7 +21,8 @@ class TTTAI {
 	 */
 	bestMove() {
 		//let pos = this.__randomAlgorithm();
-		let pos = this.__miniMaxAlgorithm();
+		//let pos = this.__miniMaxAlgorithm();
+		let pos = this.__miniMaxAlgorithmDepth();
 		return pos;
 	}
 	
@@ -68,7 +69,6 @@ class TTTAI {
 
 	/**
 	 * Random algorithm, assumes X goes first
-	 * @param model TTTModel model of the game
 	 * @return Pos position object
 	 *   6 | 7 | 8
 	 *  -----------
@@ -101,7 +101,6 @@ class TTTAI {
 
 	/**
 	 * MiniMax algorithm, AI plays O
-	 * @param model TTTModel model of the game
 	 * @return Pos position object
 	 */
 	__miniMaxAlgorithm() {
@@ -157,6 +156,76 @@ class TTTAI {
 					scores[i] = this.__getScore( XPattern | movingBit, OPattern, false);
 				} else {
 					scores[i] = this.__getScore( XPattern, OPattern | movingBit, true);
+				}
+			}
+			movingBit = movingBit << 1;
+		}
+
+		if(Xturn) {
+			return this.__minValue( scores );
+		} else {
+			return this.__maxValue( scores );
+		}
+	}
+
+	/**
+	 * MiniMax algorithm, AI plays O
+	 * @return position object
+	 */
+	__miniMaxAlgorithmDepth() {
+		let model = this.__model;
+		let XPattern = model.getXPattern();
+		let OPattern = model.getOPattern();
+
+		let allPattern = XPattern | OPattern;
+		let movingBit = 1;
+        let maxScore = -Number.MAX_VALUE;
+		let pos = 1;
+		let bestPos = -1;
+		// get all moves scores for pos not set
+		for(let i =0; i<9; i++) {
+			if( (allPattern & movingBit) == 0 ) {
+				let score = this.__getScoreDepth( XPattern, OPattern|movingBit, true, 0);
+				if(score > maxScore ) {
+					maxScore = score;
+					bestPos = pos;
+				}
+			}
+			movingBit = movingBit << 1;
+			pos ++;
+		}
+		return this.__convertPosToXY(bestPos-1);
+	}
+
+	/**
+	 * Helper function that gets the score of a single move, AI is O
+	 * @param XPattern Positions taken by X: bit i*3+j = 1 : position row i col j taken by X, 0 otherwise
+	 * @param OPattern Positions taken by O: bit i*3+j = 1 : position row i col j taken by O, 0 otherwise
+	 * @param Xturn if current move is made by X
+	 * @param depth depth of iterations, longer is better
+	 * @return score by current move
+	 */
+	__getScoreDepth(XPattern, OPattern, Xturn, depth) {
+
+		let model = this.__model;
+
+		// base cases
+		if(model.isWinner(XPattern)) { return this.MIN_SCORE + depth; }
+		if(model.isWinner(OPattern)) { return this.MAX_SCORE - depth; }
+		if(model.isDraw( XPattern|OPattern )) { return depth; }
+		
+		let allPattern = XPattern | OPattern;
+		let movingBit = 1;
+        let scores = new Array(9).fill(0);
+		// get all moves scores for pos not set
+		for(let i =0; i<9; i++) {
+			scores[i] = Xturn ? Number.MAX_VALUE : -Number.MIN_VALUE;
+			if( (allPattern & movingBit) == 0 ) {
+				// update score
+				if(Xturn) {
+					scores[i] = this.__getScoreDepth( XPattern | movingBit, OPattern, false, depth++);
+				} else {
+					scores[i] = this.__getScoreDepth( XPattern, OPattern | movingBit, true, depth++);
 				}
 			}
 			movingBit = movingBit << 1;
