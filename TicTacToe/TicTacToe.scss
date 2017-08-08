@@ -69,16 +69,19 @@ $color: #2194E0;
 	transition: all 0.3s ease-in-out;
 }
 
-#div-xbutton {
-	&:hover {
-		background-color: $color;
-		color: #fff;
-		&:before {
-		  	transform: skewX(-45deg) translateX(400px);
-			transition: all 0.3s ease-in-out;
-		}
+.div-button-active {
+	background-color: $color;
+	color: #fff;
+	&:before {
+		transform: skewX(-45deg) translateX(400px);
+		transition: all 0.3s ease-in-out;
 	}
+	svg {
+		fill: $color;
+	}
+}
 
+#div-xbutton {
 	svg {
 		@include svg-TTTButton;
 		stroke: #FF8484;
@@ -87,18 +90,6 @@ $color: #2194E0;
 }
 
 #div-obutton {
-	&:hover {
-		background-color: $color;
-		color: #fff;
-		&:before {
-		  	transform: skewX(-45deg) translateX(400px);
-			transition: all 0.3s ease-in-out;
-		}
-		svg {
-			fill: $color;
-		}
-	}
-
 	svg {
 		@include svg-TTTButton;
 		stroke: #FFDBB7;
