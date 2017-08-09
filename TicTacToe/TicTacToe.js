@@ -138,14 +138,14 @@ $(new function() {
 						this.__XButtonDiv.addClass("div-button-active");
 						this.__ObuttonDiv.removeClass("div-button-active");
 						this.__isBoardClicked = false;
-					}.bind(this), 300);
+					}.bind(this), 600);
 
 					let boardState = this.__model.getGameState();
 					if (boardState != GameState.CONTINUE) {
 						// play game ending movie
 						alert("computer wins or draw");
 					}
-				}.bind(this), 300);
+				}.bind(this), 600);
 			}
 		}
 
