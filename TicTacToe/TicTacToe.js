@@ -126,7 +126,7 @@ $(new function() {
 				alert("player wins or draw");
 			} else {
 				setTimeout(function() {
-					this.__isBoardClicked = true;
+
 					let nextPos = this.__AI.bestMove();
 					let nextPiece = this.__model.getNextPiece();
 					let isPieceSetSuccess = this.__model.setPiece(nextPos.xPos, nextPos.yPos, nextPiece);
@@ -135,7 +135,6 @@ $(new function() {
 					this.__board.drawPiece(nextPos.xPos, nextPos.yPos, nextPiece);
 
 					setTimeout(function(){
-						this.__isBoardClicked = true;
 						this.__XButtonDiv.addClass("div-button-active");
 						this.__ObuttonDiv.removeClass("div-button-active");
 						this.__isBoardClicked = false;
@@ -146,12 +145,11 @@ $(new function() {
 						// play game ending movie
 						alert("computer wins or draw");
 					}
-					this.__isBoardClicked = false;
 				}.bind(this), 300);
 			}
 		}
 
-		this.__isBoardClicked = false;
+
 	}
 
 	/**
@@ -165,6 +163,7 @@ $(new function() {
 		this.__ObuttonDiv.unbind("click", this.__onOButtonClicked);
 		this.__ObuttonDiv.unbind("mouseenter", this.__onOButtonEnter);
 		this.__ObuttonDiv.unbind("mouseleave", this.__onOButtonLeave);
+		this.__isBoardClicked = true;
 
 		// update model and AI
 		this.__firstPiece = AI_PIECE;
@@ -181,11 +180,10 @@ $(new function() {
 		this.__board.drawPiece(nextPos.xPos, nextPos.yPos, nextPiece);
 
 		setTimeout(function(){
-			this.__isBoardClicked = true;
 			this.__XButtonDiv.addClass("div-button-active");
 			this.__ObuttonDiv.removeClass("div-button-active");
 			this.__isBoardClicked = false;
-		}.bind(this), 300);
+		}.bind(this), 600);
 	}
 
 	/**
