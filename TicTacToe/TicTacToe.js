@@ -116,6 +116,7 @@ $(new function() {
 			}
 			this.__XButtonDiv.removeClass("div-button-active");
 			this.__ObuttonDiv.addClass("div-button-active");
+			this.__board.blurCanvas();
 
 			board.drawPiece(i, j, nextPiece);
 

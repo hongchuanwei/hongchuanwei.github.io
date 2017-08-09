@@ -10,6 +10,10 @@ $color: #2194E0;
 	cursor: pointer;
 }
 
+.div-Canvas-Blur {
+	filter: blur(5px);
+}
+
 #div-control {
 	height: 450px;
 	display: inline-block;
@@ -32,7 +36,7 @@ $color: #2194E0;
 	font-size: 24px;
 	font-weight: 800;
 	border-radius: 0.5em;
-	transition: all 0.6s ease-in-out;
+	transition: all 0.6s;
 	overflow: hidden;
 	position: relative;
 	background-color: #DCDCDC;
@@ -42,6 +46,7 @@ $color: #2194E0;
 		position: relative;
 		left: 70px;
 	}
+
 	&:focus{
     	outline: 0;
   	}
@@ -82,7 +87,7 @@ $color: #2194E0;
 	position: absolute;
 	left: 10px;
 	top: 10px;
-	transition: all 0.2s;
+	transition: all 0.6s;
 }
 
 @mixin div-button-hover {
@@ -101,13 +106,6 @@ $color: #2194E0;
     }
 }
 
-.div-button-active {
-	@include div-button-hover;
-	svg {
-		fill: $color;
-	}
-}
-
 #div-xbutton {
 	svg {
 		@include svg-TTTButton;
@@ -116,7 +114,7 @@ $color: #2194E0;
 	}
 }
 
-#div-obutton {
+.div-obutton {
 	svg {
 		@include svg-TTTButton;
 		stroke: #FFDBB7;
@@ -127,6 +125,13 @@ $color: #2194E0;
 #div-restart {
 	&:hover {
 		@include div-button-hover;
+	}
+}
+
+.div-button-active {
+	@include div-button-hover;
+	svg {
+		fill: $color;
 	}
 }
 

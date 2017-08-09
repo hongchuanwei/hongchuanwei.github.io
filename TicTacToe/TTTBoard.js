@@ -37,28 +37,6 @@ class TTTBoard {
 		this.__ctx.clearRect(0, 0, this.__canvas.get(0).width, this.__canvas.get(0).height);
 		this.__drawWell();
 	}
-
-	/**
-	 * Draw the # in board
-	 */
-	__drawWell() {
-		let ctx = this.__ctx;
-		ctx.lineWidth = this.WELL_LINE_WIDTH;
-		ctx.strokeStyle = this.WELL_STROKE_STYLE;
-		ctx.beginPath();
-		// horizontal lines
-		for (let i=1; i<3; i++) {
-			ctx.moveTo(0, this.BOARD_LENGTH/3*i);
-			ctx.lineTo(this.BOARD_LENGTH, this.BOARD_LENGTH/3*i);
-		}
-		// vertical lines
-		for (let i=1; i<3; i++) {
-			ctx.moveTo(this.BOARD_LENGTH/3*i, 0);
-			ctx.lineTo(this.BOARD_LENGTH/3*i, this.BOARD_LENGTH);
-		}
-		ctx.stroke();
-	}
-
 	/**
 	 * Draw a piece at ith row and jth column
 	 * @param {number} i - Row index
@@ -80,6 +58,34 @@ class TTTBoard {
 			    break;
 		}
 	}
+	/**
+	 * blur the canvas
+	 */
+	blurCanvas() {
+		this.__canvas.addClass("div-Canvas-Blur");
+	}
+	/**
+	 * Draw the # in board
+	 */
+	__drawWell() {
+		let ctx = this.__ctx;
+		ctx.lineWidth = this.WELL_LINE_WIDTH;
+		ctx.strokeStyle = this.WELL_STROKE_STYLE;
+		ctx.beginPath();
+		// horizontal lines
+		for (let i=1; i<3; i++) {
+			ctx.moveTo(0, this.BOARD_LENGTH/3*i);
+			ctx.lineTo(this.BOARD_LENGTH, this.BOARD_LENGTH/3*i);
+		}
+		// vertical lines
+		for (let i=1; i<3; i++) {
+			ctx.moveTo(this.BOARD_LENGTH/3*i, 0);
+			ctx.lineTo(this.BOARD_LENGTH/3*i, this.BOARD_LENGTH);
+		}
+		ctx.stroke();
+	}
+
+
 	/**
 	 * Draws piece X
 	 * @param {number} xPos - X position of top left corner of piece
