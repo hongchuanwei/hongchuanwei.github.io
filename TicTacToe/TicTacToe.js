@@ -134,9 +134,10 @@ $(new function() {
 
 					this.__board.drawPiece(nextPos.xPos, nextPos.yPos, nextPiece);
 
+					this.__XButtonDiv.addClass("div-button-active");
+					this.__ObuttonDiv.removeClass("div-button-active");
+
 					setTimeout(function(){
-						this.__XButtonDiv.addClass("div-button-active");
-						this.__ObuttonDiv.removeClass("div-button-active");
 						this.__isBoardClicked = false;
 					}.bind(this), 600);
 
@@ -179,9 +180,10 @@ $(new function() {
 
 		this.__board.drawPiece(nextPos.xPos, nextPos.yPos, nextPiece);
 
+		this.__XButtonDiv.addClass("div-button-active");
+		this.__ObuttonDiv.removeClass("div-button-active");
+
 		setTimeout(function(){
-			this.__XButtonDiv.addClass("div-button-active");
-			this.__ObuttonDiv.removeClass("div-button-active");
 			this.__isBoardClicked = false;
 		}.bind(this), 600);
 	}
