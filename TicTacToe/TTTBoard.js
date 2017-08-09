@@ -14,6 +14,7 @@ class TTTBoard {
 		this.X_STROKE_STYPE = "rgba(255, 80, 80, 0.7)";
 		this.O_STROKE_STYPE = "rgba(255, 204, 153, 0.7)";
 		this.__canvas = $(document.createElement("canvas")); // jquery object
+		this.__canvas.addClass("canvas-TicTacToe");
 		this.__canvas.attr({width: this.BOARD_LENGTH, height: this.BOARD_LENGTH});
 
 		this.__ctx = this.__canvas.get(0).getContext("2d");
@@ -62,7 +63,13 @@ class TTTBoard {
 	 * blur the canvas
 	 */
 	blurCanvas() {
-		this.__canvas.addClass("div-Canvas-Blur");
+		this.__canvas.addClass("canvas-Blur");
+	}
+	/**
+	 *
+	 */
+	unblurCanvas() {
+		this.__canvas.removeClass("canvas-Blur");
 	}
 	/**
 	 * Draw the # in board

@@ -137,6 +137,7 @@ $(new function() {
 
 					this.__XButtonDiv.addClass("div-button-active");
 					this.__ObuttonDiv.removeClass("div-button-active");
+					this.__board.unblurCanvas();
 
 					setTimeout(function(){
 						this.__isBoardClicked = false;
