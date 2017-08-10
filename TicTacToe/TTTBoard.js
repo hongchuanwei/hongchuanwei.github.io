@@ -66,7 +66,7 @@ class TTTBoard {
 		this.__canvas.addClass("canvas-Blur");
 	}
 	/**
-	 *
+	 * unblur the canvas
 	 */
 	unblurCanvas() {
 		this.__canvas.removeClass("canvas-Blur");
@@ -130,5 +130,35 @@ class TTTBoard {
 
 		ctx.stroke();
 		ctx.translate(-xPos, -yPos);
+	}
+
+	__drawLine(x0, y0, x1, y1, lineWidth2, strokeStyle2, duration) {
+
+		let start = new Date().getTime();
+		let end = start + duration;
+		let ctx = this.__ctx;
+		let lastProgress = 0;
+		ctx.lineWidth = lineWidth2;
+		ctx.strokeStyle = strokeStyle2;
+
+		let step = function () {
+			let x2 = (x1 - x0)*lastProgress + x0;
+			let y2 = (y1 - y0)*lastProgress + y0;
+
+			let timestamp = new Date().getTime();
+			let progress = Math.min((duration - (end - timestamp)) / duration, 1);
+			let x3 = (x1 - x0)*progress + x0;
+			let y3 = (y1 - y0)*progress + y0;
+			lastProgress = progress;
+
+			ctx.beginPath();
+			ctx.moveTo(x0, y0);
+			ctx.lineTo(x3, y3);
+			ctx.stroke();
+
+			if (progress < 1) { requestAnimationFrame(step); }
+		}
+
+		step();
 	}
 }

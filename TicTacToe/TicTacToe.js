@@ -55,6 +55,7 @@ $(new function() {
 	this.__XButtonDiv.addClass("div-button-active");
 
 
+
 	/******* Methods *******/
 	/**
 	 * Resets game
@@ -85,6 +86,9 @@ $(new function() {
 	 * @param {Object} e - Mouse click event
 	 */
 	function onCanvasClicked(e) {
+		// test
+		this.__board.__drawLine(0, 0, 100, 100, 10, "rgb(192, 192, 192)", 600);
+		/*
 		let xPos = e.pageX - this.__containerDiv.offset().left;
 		let yPos = e.pageY - this.__containerDiv.offset().top;
 
@@ -150,7 +154,7 @@ $(new function() {
 					}
 				}.bind(this), 600);
 			}
-		}
+		}*/
 
 
 	}
