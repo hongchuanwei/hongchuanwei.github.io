@@ -86,9 +86,7 @@ $(new function() {
 	 * @param {Object} e - Mouse click event
 	 */
 	function onCanvasClicked(e) {
-		// test
-		this.__board.__drawLine(0, 0, 100, 100, 10, "rgb(192, 192, 192)", 600);
-		/*
+
 		let xPos = e.pageX - this.__containerDiv.offset().left;
 		let yPos = e.pageY - this.__containerDiv.offset().top;
 
@@ -120,7 +118,6 @@ $(new function() {
 			}
 			this.__XButtonDiv.removeClass("div-button-active");
 			this.__ObuttonDiv.addClass("div-button-active");
-			this.__board.blurCanvas();
 
 			board.drawPiece(i, j, nextPiece);
 
@@ -141,7 +138,6 @@ $(new function() {
 
 					this.__XButtonDiv.addClass("div-button-active");
 					this.__ObuttonDiv.removeClass("div-button-active");
-					this.__board.unblurCanvas();
 
 					setTimeout(function(){
 						this.__isBoardClicked = false;
@@ -154,7 +150,7 @@ $(new function() {
 					}
 				}.bind(this), 600);
 			}
-		}*/
+		}
 
 
 	}

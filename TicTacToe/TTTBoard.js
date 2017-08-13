@@ -11,7 +11,7 @@ class TTTBoard {
 		this.WELL_LINE_WIDTH = 10;
 		this.WELL_STROKE_STYLE = "rgba(166, 166, 166, 0.7)"; // gray
 		this.PIECE_LINE_WIDTH = 10;
-		this.X_STROKE_STYPE = "rgba(255, 80, 80, 0.7)";
+		this.X_STROKE_STYPE = "rgb(255, 132, 132)";
 		this.O_STROKE_STYPE = "rgba(255, 204, 153, 0.7)";
 		this.__canvas = $(document.createElement("canvas")); // jquery object
 		this.__canvas.addClass("canvas-TicTacToe");
@@ -59,18 +59,7 @@ class TTTBoard {
 			    break;
 		}
 	}
-	/**
-	 * blur the canvas
-	 */
-	blurCanvas() {
-		this.__canvas.addClass("canvas-Blur");
-	}
-	/**
-	 * unblur the canvas
-	 */
-	unblurCanvas() {
-		this.__canvas.removeClass("canvas-Blur");
-	}
+
 	/**
 	 * Draw the # in board
 	 */
@@ -99,18 +88,16 @@ class TTTBoard {
 	 * @param {number} yPos - Y position of top left corner of piece
 	 */
 	__drawX(xPos, yPos) {
-		let ctx = this.__ctx;
-
-		ctx.translate(xPos, yPos);
-		ctx.lineWidth = this.PIECE_LINE_WIDTH;
-		ctx.strokeStyle = this.X_STROKE_STYPE;
-		ctx.beginPath();
-		ctx.moveTo(this.BOARD_LENGTH/3/6, this.BOARD_LENGTH/3/6);
-		ctx.lineTo(this.BOARD_LENGTH*5/18, this.BOARD_LENGTH*5/18);
-		ctx.moveTo(this.BOARD_LENGTH/3/6, this.BOARD_LENGTH*5/18);
-		ctx.lineTo(this.BOARD_LENGTH*5/18, this.BOARD_LENGTH/3/6);
-		ctx.stroke();
-		ctx.translate(-xPos, -yPos);
+		let x0 = this.BOARD_LENGTH/3/6 + xPos;
+		let y0 = this.BOARD_LENGTH/3/6 + yPos;
+		let x1 = this.BOARD_LENGTH*5/18 + xPos;
+		let y1 = this.BOARD_LENGTH*5/18 + yPos;
+		this.__drawLine(x0, y0, x1, y1, this.PIECE_LINE_WIDTH, this.X_STROKE_STYPE, 300);
+		x0 = this.BOARD_LENGTH*5/18 + xPos;
+		y0 = this.BOARD_LENGTH/3/6 + yPos;
+		x1 = this.BOARD_LENGTH/3/6 + xPos;
+		y1 = this.BOARD_LENGTH*5/18 + yPos;
+		this.__drawLine(x0, y0, x1, y1, this.PIECE_LINE_WIDTH, this.X_STROKE_STYPE, 300);
 	}
 	/**
 	 * Draws piece O
@@ -132,6 +119,9 @@ class TTTBoard {
 		ctx.translate(-xPos, -yPos);
 	}
 
+	/**
+	 * Draws a line with duration
+	 */
 	__drawLine(x0, y0, x1, y1, lineWidth2, strokeStyle2, duration) {
 
 		let start = new Date().getTime();
@@ -158,7 +148,6 @@ class TTTBoard {
 
 			if (progress < 1) { requestAnimationFrame(step); }
 		}
-
 		step();
 	}
 }
