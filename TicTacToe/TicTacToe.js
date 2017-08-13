@@ -7,6 +7,8 @@ $(new function() {
 	const PLAYER_PIECE = Piece.X;
 	// AI's piece.
 	const AI_PIECE = Piece.O;
+	// Animation duration
+	const ANIMATION_DURATION = 400;
 
 	/******* Properties *******/
 	// If the game has started
@@ -97,9 +99,9 @@ $(new function() {
 		let i = Math.floor( xPos*3/board.BOARD_LENGTH );
 		let j = Math.floor( yPos*3/board.BOARD_LENGTH );
 
-		let boardState = model.getGameState();
+		let gameState = model.getGameState();
 
-		if (boardState !== GameState.CONTINUE) { return; }
+		if (gameState !== GameState.CONTINUE) { return; }
 
 		if (this.__isBoardClicked === true) { return; }
 
@@ -121,14 +123,11 @@ $(new function() {
 
 			board.drawPiece(i, j, nextPiece);
 
-			boardState = model.getGameState();
-
-			if (boardState != GameState.CONTINUE) {
-				// play game ending movie
-				alert("player wins or draw");
-			} else {
-				setTimeout(function() {
-
+			setTimeout(function() {
+				gameState = model.getGameState();
+				if (gameState != GameState.CONTINUE) {
+					board.playGGAnimation(gameState);
+				} else {
 					let nextPos = this.__AI.bestMove();
 					let nextPiece = this.__model.getNextPiece();
 					let isPieceSetSuccess = this.__model.setPiece(nextPos.xPos, nextPos.yPos, nextPiece);
@@ -141,18 +140,15 @@ $(new function() {
 
 					setTimeout(function(){
 						this.__isBoardClicked = false;
-					}.bind(this), 600);
-
-					let boardState = this.__model.getGameState();
-					if (boardState != GameState.CONTINUE) {
-						// play game ending movie
-						alert("computer wins or draw");
-					}
-				}.bind(this), 600);
-			}
-		}
-
-
+						gameState = this.__model.getGameState();
+						if (gameState != GameState.CONTINUE) {
+							// play game ending movie
+							board.playGGAnimation(gameState);
+						}
+					}.bind(this),  ANIMATION_DURATION);
+				}
+			}.bind(this),  ANIMATION_DURATION);
+		};
 	}
 
 	/**
@@ -187,7 +183,7 @@ $(new function() {
 
 		setTimeout(function(){
 			this.__isBoardClicked = false;
-		}.bind(this), 600);
+		}.bind(this),  ANIMATION_DURATION);
 	}
 
 	/**

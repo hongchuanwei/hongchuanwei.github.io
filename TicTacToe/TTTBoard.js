@@ -12,7 +12,8 @@ class TTTBoard {
 		this.WELL_STROKE_STYLE = "rgba(166, 166, 166, 0.7)"; // gray
 		this.PIECE_LINE_WIDTH = 10;
 		this.X_STROKE_STYPE = "rgb(255, 132, 132)";
-		this.O_STROKE_STYPE = "rgba(255, 204, 153, 0.7)";
+		this.O_STROKE_STYPE = "rgb(255, 219, 183)";
+		this.ANIMATION_DURATION = 300;
 		this.__canvas = $(document.createElement("canvas")); // jquery object
 		this.__canvas.addClass("canvas-TicTacToe");
 		this.__canvas.attr({width: this.BOARD_LENGTH, height: this.BOARD_LENGTH});
@@ -25,7 +26,7 @@ class TTTBoard {
 	/******* Methods *******/
 	/**
 	 * Getter of canvas
-	 * returns {jQuery Object} Canvas object
+	 * @return {jQuery Object} Canvas object
 	 */
 	get canvas() {
 		return this.__canvas;
@@ -38,6 +39,7 @@ class TTTBoard {
 		this.__ctx.clearRect(0, 0, this.__canvas.get(0).width, this.__canvas.get(0).height);
 		this.__drawWell();
 	}
+
 	/**
 	 * Draw a piece at ith row and jth column
 	 * @param {number} i - Row index
@@ -57,6 +59,17 @@ class TTTBoard {
 			    break;
 			default:
 			    break;
+		}
+	}
+
+	/**
+	 * Game end animation
+	 * @param {TTTEnum.GameState} gameState - State of game
+	 */
+	playGGAnimation(gameState) {
+		if (gameState === GameState.DRAW) {
+			this.__ctx.clearRect(0, 0, this.__canvas.get(0).width, this.__canvas.get(0).height);
+
 		}
 	}
 
@@ -92,62 +105,92 @@ class TTTBoard {
 		let y0 = this.BOARD_LENGTH/3/6 + yPos;
 		let x1 = this.BOARD_LENGTH*5/18 + xPos;
 		let y1 = this.BOARD_LENGTH*5/18 + yPos;
-		this.__drawLine(x0, y0, x1, y1, this.PIECE_LINE_WIDTH, this.X_STROKE_STYPE, 300);
-		x0 = this.BOARD_LENGTH*5/18 + xPos;
-		y0 = this.BOARD_LENGTH/3/6 + yPos;
-		x1 = this.BOARD_LENGTH/3/6 + xPos;
-		y1 = this.BOARD_LENGTH*5/18 + yPos;
-		this.__drawLine(x0, y0, x1, y1, this.PIECE_LINE_WIDTH, this.X_STROKE_STYPE, 300);
+		this.__drawLine(x0, y0, x1, y1, this.PIECE_LINE_WIDTH, this.X_STROKE_STYPE,  this.ANIMATION_DURATION/2);
+		setTimeout(function(){
+			x0 = this.BOARD_LENGTH*5/18 + xPos;
+			y0 = this.BOARD_LENGTH/3/6 + yPos;
+			x1 = this.BOARD_LENGTH/3/6 + xPos;
+			y1 = this.BOARD_LENGTH*5/18 + yPos;
+			this.__drawLine(x0, y0, x1, y1, this.PIECE_LINE_WIDTH, this.X_STROKE_STYPE,  this.ANIMATION_DURATION/2);
+		}.bind(this), this.ANIMATION_DURATION/2)
 	}
+
 	/**
 	 * Draws piece O
 	 * @param {number} xPos - X position of top left corner of piece
 	 * @param {number} yPos - Y position of top left corner of piece
 	 */
 	__drawO(xPos, yPos) {
-		let ctx = this.__ctx;
-
-		ctx.translate(xPos, yPos);
-		ctx.lineWidth = this.PIECE_LINE_WIDTH;
-		ctx.strokeStyle = this.O_STROKE_STYPE;
-		ctx.beginPath();
-
-		ctx.arc(this.BOARD_LENGTH/6, this.BOARD_LENGTH/6, this.BOARD_LENGTH/9,
-				0, 2*Math.PI);
-
-		ctx.stroke();
-		ctx.translate(-xPos, -yPos);
+		let x = this.BOARD_LENGTH/6 + xPos;
+		let y = this.BOARD_LENGTH/6 + yPos;
+		let r = this.BOARD_LENGTH/9;
+		this.__drawArc(x, y, r, 0, -2*Math.PI, true, this.PIECE_LINE_WIDTH, this.O_STROKE_STYPE, this. ANIMATION_DURATION);
 	}
 
 	/**
 	 * Draws a line with duration
+	 * @param {number} x0 - start x position of line
+	 * @param {number} y0 - start y position of line
+	 * @param {number} x1 - end x position of line
+	 * @param {number} y1 - end y position of line
+	 * @param {number} lineWidth - Line width
+	 * @param {string} strokeStyle - stroke style
+	 * @param {number} duration - duration in miliseconds
 	 */
-	__drawLine(x0, y0, x1, y1, lineWidth2, strokeStyle2, duration) {
-
+	__drawLine(x0, y0, x1, y1, lineWidth, strokeStyle, duration) {
 		let start = new Date().getTime();
 		let end = start + duration;
 		let ctx = this.__ctx;
-		let lastProgress = 0;
-		ctx.lineWidth = lineWidth2;
-		ctx.strokeStyle = strokeStyle2;
+		ctx.lineWidth = lineWidth;
+		ctx.strokeStyle = strokeStyle;
 
 		let step = function () {
-			let x2 = (x1 - x0)*lastProgress + x0;
-			let y2 = (y1 - y0)*lastProgress + y0;
-
 			let timestamp = new Date().getTime();
 			let progress = Math.min((duration - (end - timestamp)) / duration, 1);
-			let x3 = (x1 - x0)*progress + x0;
-			let y3 = (y1 - y0)*progress + y0;
-			lastProgress = progress;
+			let x2 = (x1 - x0)*progress + x0;
+			let y2 = (y1 - y0)*progress + y0;
 
 			ctx.beginPath();
 			ctx.moveTo(x0, y0);
-			ctx.lineTo(x3, y3);
+			ctx.lineTo(x2, y2);
 			ctx.stroke();
 
 			if (progress < 1) { requestAnimationFrame(step); }
-		}
+		};
+
+		step();
+	}
+
+	/**
+	 * Draws an arc with duration
+	 * @param {number} x - The x-coordinate of the center of the circle
+	 * @param {number} y - The y-coordinate of the center of the circle
+	 * @param {number} r - The radius of the circle
+	 * @param {number} sAngle - The starting angle, in radians (0 is at the 3 o'clock position of the arc's circle)
+	 * @param {number} eAngle - The end angle, in radians
+	 * @param {boolean} counterclockwise - Specifies whether the drawing should be counterclockwise or clockwise.
+	 *                                     False indicates clockwise, while true indicates counter-clockwise.
+	 * @param {number} lineWidth - Line width
+	 * @param {string} strokeStyle - stroke style
+	 * @param {number} duration - duration in miliseconds
+	 */
+	__drawArc(x, y, r, sAngle, eAngle, counterclockwise, lineWidth, strokeStyle, duration) {
+		let start = new Date().getTime();
+		let end = start + duration;
+		let ctx = this.__ctx;
+		ctx.lineWidth = lineWidth;
+		ctx.strokeStyle = strokeStyle;
+
+		let step = function () {
+			let timestamp = new Date().getTime();
+			let progress = Math.min((duration - (end - timestamp)) / duration, 1);
+
+			let mAngle = (eAngle - sAngle)*progress + sAngle;
+			ctx.beginPath();
+			ctx.arc(x, y, r, sAngle, mAngle, counterclockwise);
+			ctx.stroke();
+			if (progress < 1) { requestAnimationFrame(step); }
+		};
 		step();
 	}
 }

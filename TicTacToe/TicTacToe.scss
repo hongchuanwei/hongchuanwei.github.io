@@ -2,6 +2,7 @@
 # Tic Tac Toe style file
 ---
 $color: #2194E0;
+$animation_duration: 0.3s;
 
 #div-TicTacToe {
 	display: inline-block;
@@ -11,12 +12,12 @@ $color: #2194E0;
 }
 
 .canvas-TicTacToe {
-	transition: all 0.6s;
+	transition: all $animation_duration;
 }
 
 .canvas-Blur {
 	filter: blur(2px);
-	transition: all 0.6s;
+	transition: all $animation_duration;
 }
 
 #div-control {
@@ -41,7 +42,7 @@ $color: #2194E0;
 	font-size: 24px;
 	font-weight: 800;
 	border-radius: 0.5em;
-	transition: all 0.6s;
+	transition: all $animation_duration;
 	overflow: hidden;
 	position: relative;
 	background-color: #DCDCDC;
@@ -92,7 +93,7 @@ $color: #2194E0;
 	position: absolute;
 	left: 10px;
 	top: 10px;
-	transition: all 0.6s;
+	transition: all $animation_duration;
 }
 
 @mixin div-button-hover {
@@ -102,12 +103,12 @@ $color: #2194E0;
 	&:before {
 		transform: skewX(-15deg) translateX(500px);
 		opacity: 0.6;
-		transition: all 0.7s;
+		transition: all $animation_duration;
 	}
 	&:after{
       transform: translateX(500px) skewX(-15deg);
       opacity: 1;
-      transition: .7s;
+      transition: $animation_duration;
     }
 }
 
