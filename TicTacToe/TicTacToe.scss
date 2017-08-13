@@ -6,7 +6,6 @@ $animation_duration: 0.3s;
 
 #div-TicTacToe {
 	display: inline-block;
-	border: 1px solid green;
 	vertical-align: top;
 	cursor: pointer;
 }
@@ -23,8 +22,8 @@ $animation_duration: 0.3s;
 #div-control {
 	height: 450px;
 	display: inline-block;
-	border: 1px solid black;
 	vertical-align: top;
+	padding-left: 10px;
 }
 
 #div-control-flex {
@@ -32,7 +31,6 @@ $animation_duration: 0.3s;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
-	border: 3px dashed red;
 }
 
 .div-TTTButton {

@@ -126,7 +126,7 @@ $(new function() {
 			setTimeout(function() {
 				gameState = model.getGameState();
 				if (gameState != GameState.CONTINUE) {
-					board.playGGAnimation(gameState);
+					board.playGGAnimation(gameState, this.__model.getWinningPosition());
 				} else {
 					let nextPos = this.__AI.bestMove();
 					let nextPiece = this.__model.getNextPiece();
@@ -142,7 +142,7 @@ $(new function() {
 						gameState = this.__model.getGameState();
 						if (gameState != GameState.CONTINUE) {
 							// play game ending movie
-							board.playGGAnimation(gameState);
+							board.playGGAnimation(gameState, this.__model.getWinningPosition());
 						} else {
 							this.__isBoardClicked = false;
 						}

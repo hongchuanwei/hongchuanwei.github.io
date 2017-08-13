@@ -6,6 +6,7 @@
 
 function TTTModel (firstPiece, playerPiece) {
 	/******* properties *******/
+	// winning pattern: bit i*3+j=1: position (row i, col j) taken by X; 0 otherwise
 	this.__winningPatterns = [
       0x1c0,   // 0b111 000 000 (row 2)
       0x038,   // 0b000 111 000 (row 1)
@@ -16,29 +17,28 @@ function TTTModel (firstPiece, playerPiece) {
       0x111,   // 0b100 010 001 (diagonal)
       0x054    // 0b001 010 100 (opposite diagonal)
 	];
-	/**
-	 * bit i*3+j=1: position (row i, col j) taken by X; 0 otherwise
-	 */
+	// winning start and end position
+	this.__winningPositions = [
+		{x0: 2, y0:0, x1: 2, y1:2},
+		{x0: 1, y0:0, x1: 1, y1:2},
+		{x0: 0, y0:0, x1: 0, y1:2},
+		{x0: 0, y0:2, x1: 2, y1:2},
+		{x0: 0, y0:1, x1: 2, y1:1},
+		{x0: 0, y0:0, x1: 2, y1:0},
+		{x0: 0, y0:0, x1: 2, y1:2},
+		{x0: 2, y0:0, x1: 0, y1:2},
+	];
+	// bit i*3+j=1: position (row i, col j) taken by X; 0 otherwise
 	this.__XPattern = 0;
-	/**
-	 * bit i*3+j=1: position (row i, col j) taken by O; 0 otherwise
-	 */
+	// bit i*3+j=1: position (row i, col j) taken by O; 0 otherwise
 	this.__OPattern = 0;
-	/**
-	 * number of piece set
-	 */
+	// number of piece set
 	this.__nPieceSet = 0;
-	/**
-	 * Who moves first
-	 */
+	// Who moves first
 	this.__firstPiece = firstPiece;
-	/**
-	 * Player's piece
-	 */
+	// Player's piece
 	this.__playerPiece = playerPiece;
-	/**
-	 * last piece played
-	 */
+	// last piece played
 	this.__lastPiece = null;
 
 	/******* Public methods *******/
@@ -138,7 +138,6 @@ function TTTModel (firstPiece, playerPiece) {
 		return Piece.INVALID;
 	};
 
-	/******* Private methods *******/
 	/**
 	 * Determine if a pattern wins the game
 	 * @param {int} pattern a pattern
@@ -164,6 +163,27 @@ function TTTModel (firstPiece, playerPiece) {
 			return true;
 		} else {
 			return false;
+		}
+	};
+
+	/**
+	 * Get the winning start and end position
+	 */
+	this.getWinningPosition = function GetWinningPosition() {
+		var pattern;
+		if (this.getGameState() === GameState.X_WIN) {
+			pattern = this.__XPattern;
+		} else if (this.getGameState() === GameState.O_WIN) {
+			pattern = this.__OPattern;
+		} else {
+			return {};
+		}
+
+		for (var i=0; i < this.__winningPatterns.length; i++) {
+			var aWinningPattern = this.__winningPatterns[i];
+			if ((aWinningPattern & pattern) == aWinningPattern) {
+				return this.__winningPositions[i];
+			}
 		}
 	};
 }

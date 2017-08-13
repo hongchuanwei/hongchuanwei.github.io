@@ -34,7 +34,7 @@ class TTTAI {
 		}
 		return pos;
 	}
-	
+
 	/**
 	 * Converts position to x y object
 	 * @param pos position of piece: 0~8
@@ -45,7 +45,7 @@ class TTTAI {
 		posObj.xPos = Math.floor(pos/3);
 		posObj.yPos = pos % 3;
 		return posObj;
-	} 
+	}
 
 	/**
 	 * @param integers
@@ -84,7 +84,7 @@ class TTTAI {
 	 *   3 | 4 | 5
 	 *  -----------
 	 *   0 | 1 | 2
-	 */  
+	 */
 	__randomAlgorithm () {
 		let model = this.__model;
 		let XPattern = model.getXPattern();
@@ -126,7 +126,7 @@ class TTTAI {
 		for(let i =0; i<9; i++) {
 			if( (allPattern & movingBit) == 0 ) {
 				let score = this.__getScore( XPattern, OPattern | movingBit, true);
-		
+
 				if(score > maxScore ) {
 					maxScore = score;
 					bestPos = pos;
@@ -137,7 +137,7 @@ class TTTAI {
 		}
 		return this.__convertPosToXY(bestPos - 1);
 	}
-	
+
 	/**
 	 * Helper function that gets the score of a single move, AI is O
 	 * @param XPattern Positions taken by X: bit i*3+j = 1 : position row i col j taken by X, 0 otherwise
@@ -147,13 +147,13 @@ class TTTAI {
 	 */
 	__getScore(XPattern, OPattern, Xturn) {
 		// base cases
-		
+
 		let model = this.__model;
-		
+
 		if( model.isWinner(XPattern)) { return this.MIN_SCORE; }
 		if( model.isWinner(OPattern)) { return this.MAX_SCORE; }
 		if( model.isDraw( XPattern|OPattern )) { return 0; }
-		
+
 		let allPattern = XPattern | OPattern;
 		let movingBit = 1;
         let scores = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -222,7 +222,7 @@ class TTTAI {
 		if(model.isWinner(XPattern)) { return this.MIN_SCORE + depth; }
 		if(model.isWinner(OPattern)) { return this.MAX_SCORE - depth; }
 		if(model.isDraw( XPattern|OPattern )) { return depth; }
-		
+
 		let allPattern = XPattern | OPattern;
 		let movingBit = 1;
         let scores = new Array(9).fill(0);

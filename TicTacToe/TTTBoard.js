@@ -6,7 +6,7 @@ class TTTBoard {
 	/******* constructor *******/
 	constructor() {
 		this.BOARD_LENGTH = 450; // board length in pixel
-		this.WELL_LINE_WIDTH = 10;
+		this.WELL_LINE_WIDTH = 5;
 		this.WELL_STROKE_STYLE = "rgba(166, 166, 166, 0.7)"; // gray
 		this.PIECE_LINE_WIDTH = 10;
 		this.X_STROKE_STYPE = "rgb(255, 132, 132)";
@@ -20,6 +20,7 @@ class TTTBoard {
 		this.__ctx.font = "60px Arial";
 
 		this.__drawWell();
+		this.__drawBoarder();
 	}
 
 
@@ -38,6 +39,7 @@ class TTTBoard {
 	reset() {
 		this.__ctx.clearRect(0, 0, this.__canvas.get(0).width, this.__canvas.get(0).height);
 		this.__drawWell();
+		this.__drawBoarder();
 	}
 
 	/**
@@ -65,10 +67,12 @@ class TTTBoard {
 	/**
 	 * Game end animation
 	 * @param {TTTEnum.GameState} gameState - State of game
+	 * @param {Object} winningPosition - Winning position {x0, y0, x1, y1}
 	 */
-	playGGAnimation(gameState) {
+	playGGAnimation(gameState, winningPosition, winningSide) {
 		if (gameState === GameState.DRAW) {
 			this.__ctx.clearRect(0, 0, this.__canvas.get(0).width, this.__canvas.get(0).height);
+			this.__drawBoarder();
 			this.__drawX(this.BOARD_LENGTH/4 - this.BOARD_LENGTH/6, this.BOARD_LENGTH/4);
 			setTimeout(function() {
 				this.__drawO(this.BOARD_LENGTH/4*3 - this.BOARD_LENGTH/6, this.BOARD_LENGTH/4);
@@ -76,6 +80,30 @@ class TTTBoard {
 					this.__ctx.fillText("Draw!", 150, this.BOARD_LENGTH/4*3);
 				}.bind(this), this.ANIMATION_DURATION);
 			}.bind(this), this.ANIMATION_DURATION+50);
+		} else {
+			// draw the line indicating the winning pattern
+			let x0 = (2*winningPosition.x0+1) * this.BOARD_LENGTH/6;
+			let y0 = (2*winningPosition.y0+1) * this.BOARD_LENGTH/6;
+			let x1 = (2*winningPosition.x1+1) * this.BOARD_LENGTH/6;
+			let y1 = (2*winningPosition.y1+1) * this.BOARD_LENGTH/6;
+			let strokeType = (gameState === GameState.X_WIN) ? this.X_STROKE_STYPE : this.O_STROKE_STYPE;
+			this.__drawLine(x0, y0, x1, y1, this.PIECE_LINE_WIDTH, strokeType, this.ANIMATION_DURATION);
+
+			setTimeout(function() {
+				this.__ctx.clearRect(0, 0, this.__canvas.get(0).width, this.__canvas.get(0).height);
+				this.__drawBoarder();
+				if (gameState === GameState.X_WIN) {
+					this.__drawX(this.BOARD_LENGTH/2 - this.BOARD_LENGTH/6, this.BOARD_LENGTH/4);
+				} else {
+					this.__drawO(this.BOARD_LENGTH/2 - this.BOARD_LENGTH/6, this.BOARD_LENGTH/4);
+				}
+				setTimeout(function() {
+					let text = (gameState === GameState.X_WIN) ? "You Won!" : "You Lost!";
+					let xPos = (gameState === GameState.X_WIN) ? 100 : 100;
+					this.__ctx.fillText(text, xPos, this.BOARD_LENGTH/4*3);
+				}.bind(this), this.ANIMATION_DURATION);
+			}.bind(this), this.ANIMATION_DURATION+50);
+
 		}
 	}
 
@@ -94,6 +122,27 @@ class TTTBoard {
 		}
 		// vertical lines
 		for (let i=1; i<3; i++) {
+			ctx.moveTo(this.BOARD_LENGTH/3*i, 0);
+			ctx.lineTo(this.BOARD_LENGTH/3*i, this.BOARD_LENGTH);
+		}
+		ctx.stroke();
+	}
+
+	/**
+	 * Draw the boarder of
+	 */
+	__drawBoarder() {
+		let ctx = this.__ctx;
+		ctx.lineWidth = this.WELL_LINE_WIDTH*2;
+		ctx.strokeStyle = this.WELL_STROKE_STYLE;
+		ctx.beginPath();
+		// horizontal lines
+	   	for (let i=0; i<=3; i+=3) {
+		   	ctx.moveTo(0, this.BOARD_LENGTH/3*i);
+		   	ctx.lineTo(this.BOARD_LENGTH, this.BOARD_LENGTH/3*i);
+		}
+		// vertical lines
+		for (let i=0; i<=3; i+=3) {
 			ctx.moveTo(this.BOARD_LENGTH/3*i, 0);
 			ctx.lineTo(this.BOARD_LENGTH/3*i, this.BOARD_LENGTH);
 		}

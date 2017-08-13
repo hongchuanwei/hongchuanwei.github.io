@@ -2,7 +2,6 @@
 
 #main-container {
 	padding: 45px 0px 0px 0px; /* padding top for navigator bar */
-	border: 1px solid red;
 	height: 700px; /* remove this when done */
 }
 
@@ -23,7 +22,6 @@
 .carousel-bar .carousel-arrow {
 	display: inline-block;
 	vertical-align: middle;
-	border: 1px solid red;
 	color: rgb(180,180,180);
 }
 
@@ -53,5 +51,5 @@
 }
 
 #div-container {
-	border: 2px solid red;
+	
 }
