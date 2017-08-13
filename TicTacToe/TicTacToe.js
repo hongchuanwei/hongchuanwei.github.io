@@ -139,11 +139,12 @@ $(new function() {
 					this.__ObuttonDiv.removeClass("div-button-active");
 
 					setTimeout(function(){
-						this.__isBoardClicked = false;
 						gameState = this.__model.getGameState();
 						if (gameState != GameState.CONTINUE) {
 							// play game ending movie
 							board.playGGAnimation(gameState);
+						} else {
+							this.__isBoardClicked = false;
 						}
 					}.bind(this),  ANIMATION_DURATION);
 				}

@@ -3,8 +3,6 @@
  */
 
 class TTTBoard {
-
-
 	/******* constructor *******/
 	constructor() {
 		this.BOARD_LENGTH = 450; // board length in pixel
@@ -19,6 +17,8 @@ class TTTBoard {
 		this.__canvas.attr({width: this.BOARD_LENGTH, height: this.BOARD_LENGTH});
 
 		this.__ctx = this.__canvas.get(0).getContext("2d");
+		this.__ctx.font = "60px Arial";
+
 		this.__drawWell();
 	}
 
@@ -69,7 +69,13 @@ class TTTBoard {
 	playGGAnimation(gameState) {
 		if (gameState === GameState.DRAW) {
 			this.__ctx.clearRect(0, 0, this.__canvas.get(0).width, this.__canvas.get(0).height);
-
+			this.__drawX(this.BOARD_LENGTH/4 - this.BOARD_LENGTH/6, this.BOARD_LENGTH/4);
+			setTimeout(function() {
+				this.__drawO(this.BOARD_LENGTH/4*3 - this.BOARD_LENGTH/6, this.BOARD_LENGTH/4);
+				setTimeout(function() {
+					this.__ctx.fillText("Draw!", 150, this.BOARD_LENGTH/4*3);
+				}.bind(this), this.ANIMATION_DURATION);
+			}.bind(this), this.ANIMATION_DURATION+50);
 		}
 	}
 
