@@ -1,13 +1,13 @@
 // Constants
 var GAME_URL = [
 	"TicTacToe/TicTacToe.html",
-	"Gomoku.html"
+	"Gomoku/Gomoku.html"
 ];
 var NUM_GAMES = GAME_URL.length;
 
 $(function() {
 
-	// properties 
+	// properties
 	this.gameIdx = 0;
 	this.containerDiv = $("#div-container");
 	this.carouselLeft = $("#carousel-l");
@@ -17,7 +17,7 @@ $(function() {
 	this.containerDiv.load(GAME_URL[this.gameIdx]);
 
 	this.carouselLeft.click(arrowClicked.bind(this,-1));
-	this.carouselRight.click(arrowClicked.bind(this,1)); 
+	this.carouselRight.click(arrowClicked.bind(this,1));
 
 
 	function arrowClicked(increment) {
@@ -27,6 +27,3 @@ $(function() {
 	}
 
 });
-
-
-

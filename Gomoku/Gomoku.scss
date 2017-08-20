@@ -1,0 +1,26 @@
+---
+# Gomoku style file
+---
+#div-Gomoku {
+    border: 1px solid red;
+}
+
+.GomokuBoardBackground {
+    fill: #FF9b3B;
+}
+
+.GomokuBoardLine {
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.GomokuBoardBoarder {
+    stroke: black;
+    stroke-width: 4px;
+    fill: none;
+}
+
+.GomokuBoardDot {
+    stroke: black;
+    fill: black;
+}

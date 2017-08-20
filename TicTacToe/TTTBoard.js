@@ -1,7 +1,6 @@
 /**
  * This is the view of the TicTacToe game
  */
-
 class TTTBoard {
 	/******* constructor *******/
 	constructor() {
