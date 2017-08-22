@@ -24,3 +24,35 @@
     stroke: black;
     fill: black;
 }
+
+.GomokuPieceBlackHidden {
+    cursor: pointer;
+    fill: black;
+    fill-opacity: 0;
+    &:hover {
+        fill-opacity: 0.25;
+    }
+}
+
+.GomokuPieceWhiteHidden {
+    cursor: pointer;
+    fill: white;
+    fill-opacity: 0;
+    &:hover {
+        fill-opacity: 0.25;
+    }
+}
+
+.GomokuPieceBlack {
+    fill: #262626;
+}
+
+.GomokuPieceWhite {
+    fill: #F5F5F5;
+}
+
+.GomokuPieceCurrent {
+    stroke: #00BFFE;
+    stroke-width: 2px;
+    shape-rendering: auto;
+}
