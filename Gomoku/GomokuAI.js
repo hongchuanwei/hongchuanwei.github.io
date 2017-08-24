@@ -1,73 +1,18 @@
 /**
  * This is the Gomoku AI
+ * @param {GomokuModel} model - model of the game
  */
-GomokuAI = function fun$Gomoku$GomokuAI() {
+GomokuAI = function fun$Gomoku$GomokuAI(model) {
     this.__allPatterns = this.__findAllPatterns();
-
+	this.__model = model;
 }
 
 GomokuAI.prototype = {
-    // patterns of interest. 1 - tabke by us; 0 not taken; -1 - taken by opponent
-    __pattern: {
-        "win": [ [1,1,1,1,1] ],
-        "unCovered4": [ [0, 1, 1, 1, 1, 0] ],
-        "unCovered3": [ [0, 1, 1, 1, 0, 0],
-                        [0, 0, 1, 1, 1, 0],
-                        [0, 1, 0, 1, 1, 0],
-                        [0, 1, 1, 0, 1, 0] ],
-        "unCovered2": [ [0, 0, 1, 1, 0, 0],
-                        [0, 1, 0, 1, 0, 0],
-                        [0, 0, 1, 0, 1, 0],
-                        [0, 1, 1, 0, 0, 0],
-                        [0, 0, 0, 1, 1, 0],
-                        [0, 1, 0, 0, 1, 0] ],
-        "covered4":   [ [-1, 1, 0, 1, 1, 1],
-                        [-1, 1, 1, 0, 1, 1],
-                        [-1, 1, 1, 1, 0, 1],
-                        [-1, 1, 1, 1, 1, 0],
-                        [0, 1, 1, 1, 1, -1],
-                        [1, 0, 1, 1, 1, -1],
-                        [1, 1, 0, 1, 1, -1],
-                        [1, 1, 1, 0, 1, -1] ],
-        "covered3":   [ [-1, 1, 1, 1, 0, 0],
-                        [-1, 1, 1, 0, 1, 0],
-                        [-1, 1, 0, 1, 1, 0],
-                        [0, 0, 1, 1, 1, -1],
-                        [0, 1, 0, 1, 1, -1],
-                        [0, 1, 1, 0, 1, -1],
-                        [-1, 1, 0, 1, 0, 1, -1],
-                        [-1, 0, 1, 1, 1, 0, -1],
-                        [-1, 1, 1, 0, 0, 1, -1],
-                        [-1, 1, 0, 0, 1, 1, -1] ],
-    },
+    
 
-    // all the patterns including those for the opponent
-    __allPatterns: null,
+    
 
     /******* Value function related *******/
-    /**
-     * Helper function that makes pattern for the opponent
-     */
-    __findAllPatterns: function fun$Gomoku$findAllPatterns() {
-        let allPatterns = [this.__pattern.win, this.__pattern.unCovered4,
-            this.__pattern.unCovered3, this.__pattern.unCovered2,
-            this.__pattern.covered4, this.__pattern.covered3];
-        for (let k = 0; k < allPatterns.length; k++) {
-            let temp = [];
-            for (let j = 0; j < allPatterns[k].length; j++) {
-                var tmp = [];
-                for (var i = 0; i < allPatterns[k][j].length; i++) {
-                    tmp[i] = -allPatterns[k][j][i];
-                }
-                temp.push(tmp);
-            }
-            for (var m = 0; m < temp.length; m++) {
-                allPatterns[k].push(temp[m]);
-            }
-        }
-        return allPatterns;
-    },
-
     /**
      * finds the value of a new placed piece
      */
@@ -148,68 +93,82 @@ GomokuAI.prototype = {
         return 0;
     },
 
-    /**
-     * Helper function that finds one array in another array. Maybe change to KMP
-     */
-    __isInArray: function fun$Gomoku$isInArray(arr, inArr) {
-        var fCount = arr.length;
-        var sCount = inArr.length;
-        var k;
-        for (var i = 0; i <= fCount - sCount; i++) {
-            k = 0;
-            for (var j = 0; j < sCount; j++) {
-                if (arr[i + j] == inArr[j]) k++;
-                else break;
-            }
-            if (k == sCount) return true;
-        }
-        return false;
-    },
-
-    /**
-     * Helper function that finds if an array is in another list of arrays
-     */
-    __isInArrays: function fun$Gomoku$isInArrays(combos, arr) {
-        for (var i = 0; i < combos.length; i++) {
-            if (this.__isInArray(arr, combos[i])) { return true; }
-        }
-        return false;
-    },
+    
 
     /******* Strategy related *******/
     /**
      * Gets the positions worth exploring. Sacrifice space for time and simplicity,
      * since the matrix is not big. Otherwise, could use object as hashmap.
      */
-    __updateCandidatePosMatrix: function fun$Gomoku$upcateCandidateMatrix(i, j) {
-        // Remove the new placed piece
-        if (this.__candidates[i][j] === 1) {
-            this.__candidates[i][j] = 0;
-        }
+    __updateCandidatePosMatrix: function fun$Gomoku$upcateCandidateMatrix(i, j, piece) {
+		// set the piece down
+		this.__placedPosMatrix[i][j] = piece;
+		
+		// adding new candidates around the placed piece
+		for (let di=-this.__ringR; di<=this.__ringR; di++) {
+			for (let dj=-this.__ringR; dj<=this.__ringR; dj++) {
+				let ii = i+di, jj=j+dj;
+				if (ii<0 || ii>=this.__model.get_gridSize || 
+					jj<0 || jj>=this.__model.get_gridSize) {
+					break;
+				}
+				let isCandidate = this.__placedPosMatrix[ii][jj]!==GomokuPiece.None ? 0 : 1;
+				this.__candidatePosMatrix[ii][jj] = isCandidate;
+			}
+		}
+	},
+    
+	/**
+     * Recovers the positions worth exploring for backtracking purpose.
+     */
+	__recoverCandidatePosMatrix: function fun$Gomoku$recoverCandidatePosMatrix(i, j) {
+		// remove the piece
+		this.__placedPosMatrix[i][j] = GomokuPiece.None;
+		
+		// remove candidates if they are there only because the removed piece
+		for (let di=-this.__ringR; di<=this.__ringR; di++) {
+			for (let dj=-this.__ringR; dj<=this.__ringR; dj++) {
+				let ii = i+di, jj=j+dj;
+				if (ii<0 || ii>=this.__model.get_gridSize || 
+					jj<0 || jj>=this.__model.get_gridSize) {
+					break;
+				}
+				let isCandidate = 0;
+				for (let dk=-this.__ringR; dk<=this.__ringR; dk++) {
+					for (let dl=-this.__ringR; dl<=this.__ringR; dl++) {
+						let kk=ii+dk, ll=jj+dl;
+						if (kk<0 || kk>=this.__model.get_gridSize || 
+							ll<0 || ll>=this.__model.get_gridSize) {
+							break;
+						}
+						if (this.__placedPosMatrix[kk][ll] !== GomokuPiece.None) {
+							isCandidate = 1;
+							break;
+						}
+					}
+				}
+				this.__candidatePosMatrix[ii][jj] = isCandidate;
+			}
+		}
+	},
+	
+	
 
-        // Update candidates in the ring of the new placed piece
-        var children = [];
-        var candidates = [];
-        // Find the candidates around already placed pieces!
-        for (var i = 0; i < cellsCount; i++) {
-          for (var j = 0; j < cellsCount; j++) {
-            if (parent[i][j] != 0) { // if ocupied
-              for (var k = i - ring; k <= i + ring; k++) {
-                for (var l = j - ring; l <= j + ring; l++) {
-                  if (k >= 0 && l >= 0 && k < cellsCount && l < cellsCount) { // is there repeated computation here?
-                    if (parent[k][l] == 0) {
-                      var curPoint = [k, l]; // [x, y]
-                      var flag = isAllSatisfy(candidates, curPoint[0], curPoint[1]);
-                      if (flag) candidates.push(curPoint);
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        return children;
-      };
-
+	__heuristicAlgorithm: function fun$Gomoku$heuristicAlgorithm(i, j, piece) {
+		var playerVal = this.__findPosValue(
+            this.__getPattern(i, j, 1, 0, piece),
+			this.__getPattern(i, j, 0, 1, piece),
+			this.__getPattern(i, j, 1, 1, piece),
+			this.__getPattern(i, j, 1,-1, piece)
+        );
+		
+		let opponentPiece = this.__model.getOpponent(piece);
+		var opponentVal = this.__findPosValue(
+			this.__getPattern(i, j, 1, 0, opponentPiece),
+			this.__getPattern(i, j, 0, 1, opponentPiece),
+			this.__getPattern(i, j, 1, 1, opponentPiece),
+			this.__getPattern(i, j, 1,-1, opponentPiece)
+        );
+		return 2*playerVal + opponentVal;
+	},
 }

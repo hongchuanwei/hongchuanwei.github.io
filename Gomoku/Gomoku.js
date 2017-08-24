@@ -7,7 +7,8 @@ $(new function() {
     this.__containerDiv = $("#div-Gomoku");
     this.__board = new GomokuBoard($("#div-middle-top").height(), GRID_SIZE); // SVG group
     this.__isBlackMove = true;
-    this.__AI = new GomokuAI();
+    this.__model = new GomokuModel();
+    //this.__AI = new GomokuAI();
 
     /******* Delegates *******/
     // Canvas clicking delegate
