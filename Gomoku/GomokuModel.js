@@ -14,43 +14,9 @@ GomokuModel = function fun$Gomoku$GomokuModel(playerPiece, gridSize) {
 }
 
 GomokuModel.prototype = {
-    // patterns of interest. 1 - tabke by us; 0 not taken; -1 - taken by opponent
-    __patterns: {
-        "win": [ [1,1,1,1,1] ],
-        "unCovered4": [ [0, 1, 1, 1, 1, 0] ],
-        "unCovered3": [ [0, 1, 1, 1, 0, 0],
-                        [0, 0, 1, 1, 1, 0],
-                        [0, 1, 0, 1, 1, 0],
-                        [0, 1, 1, 0, 1, 0] ],
-        "unCovered2": [ [0, 0, 1, 1, 0, 0],
-                        [0, 1, 0, 1, 0, 0],
-                        [0, 0, 1, 0, 1, 0],
-                        [0, 1, 1, 0, 0, 0],
-                        [0, 0, 0, 1, 1, 0],
-                        [0, 1, 0, 0, 1, 0] ],
-        "covered4":   [ [-1, 1, 0, 1, 1, 1],
-                        [-1, 1, 1, 0, 1, 1],
-                        [-1, 1, 1, 1, 0, 1],
-                        [-1, 1, 1, 1, 1, 0],
-                        [0, 1, 1, 1, 1, -1],
-                        [1, 0, 1, 1, 1, -1],
-                        [1, 1, 0, 1, 1, -1],
-                        [1, 1, 1, 0, 1, -1] ],
-        "covered3":   [ [-1, 1, 1, 1, 0, 0],
-                        [-1, 1, 1, 0, 1, 0],
-                        [-1, 1, 0, 1, 1, 0],
-                        [0, 0, 1, 1, 1, -1],
-                        [0, 1, 0, 1, 1, -1],
-                        [0, 1, 1, 0, 1, -1],
-                        [-1, 1, 0, 1, 0, 1, -1],
-                        [-1, 0, 1, 1, 1, 0, -1],
-                        [-1, 1, 1, 0, 0, 1, -1],
-                        [-1, 1, 0, 0, 1, 1, -1] ],
-    },
-    // all the patterns including those for the opponent
-    __allPatterns: null,
     // last placed piece
     __lastPiece: null,
+
 
     initialize: function fun$GomokuModel$initiate() {
         this.__placedPosMatrix = this.__ArrayUtility.createArray(this.__gridSize, this.__gridSize);
@@ -59,7 +25,6 @@ GomokuModel.prototype = {
                 this.__placedPosMatrix[i][j] = GomokuPiece.None;
             }
         }
-        this.__allPatterns = this.get_allPatterns();
     },
     /**
      * Resets the game
@@ -91,30 +56,6 @@ GomokuModel.prototype = {
     },
 
     /**
-     * Get all patterns. Always use this.
-     */
-    get_allPatterns: function fun$GomokuModel$getAllPatterns() {
-        if (this.__allPatterns) { return this.__allPatterns; }
-        let allPatterns = [this.__patterns.win, this.__patterns.unCovered4,
-            this.__patterns.unCovered3, this.__patterns.unCovered2,
-            this.__patterns.covered4, this.__patterns.covered3];
-        for (let k = 0; k < allPatterns.length; k++) {
-            let temp = [];
-            for (let j = 0; j < allPatterns[k].length; j++) {
-                var tmp = [];
-                for (var i = 0; i < allPatterns[k][j].length; i++) {
-                    tmp[i] = -allPatterns[k][j][i];
-                }
-                temp.push(tmp);
-            }
-            for (var m = 0; m < temp.length; m++) {
-                allPatterns[k].push(temp[m]);
-            }
-        }
-        return allPatterns;
-    },
-
-    /**
      * Gets opponent's piece
      */
     getOpponent: function fun$GomokuModel$getOpponent(piece) {
@@ -142,13 +83,12 @@ GomokuModel.prototype = {
             this.__getPattern(i, j, 1, 1, piece),
             this.__getPattern(i, j, 1, -1, piece)];
         for (let i=0; i<patterns.length; i++) {
-            if (this.__ArrayUtility.isAnyArraysInArray(this.get_allPatterns()[0], patterns[i])) {
+            if (this.__ArrayUtility.isAnyArraysInArray(this.__patterns.win, patterns[i])) {
                 return true;
             }
         }
         return false;
     },
-
 
     /**
      * Get pattern in one of four directions. Need to look forward and backward.
@@ -187,4 +127,66 @@ GomokuModel.prototype = {
         }
         return pattern;
 	},
+
+    // patterns of interest. 1 - tabke by us; 0 not taken; -1 - taken by opponent
+    __patterns: {
+        "win": [ [1,1,1,1,1], [-1,-1,-1,-1,-1] ],
+        "unCovered4": [ [0, 1, 1, 1, 1, 0], [0, -1, -1, -1, -1, 0] ],
+        "unCovered3": [ [0, 1, 1, 1, 0, 0],
+                        [0, 0, 1, 1, 1, 0],
+                        [0, 1, 0, 1, 1, 0],
+                        [0, 1, 1, 0, 1, 0],
+                        [0, -1, -1, -1, 0, 0],
+                        [0, 0, -1, -1, -1, 0],
+                        [0, -1, 0, -1, -1, 0],
+                        [0, -1, -1, 0, -1, 0] ],
+        "unCovered2": [ [0, 0, 1, 1, 0, 0],
+                        [0, 1, 0, 1, 0, 0],
+                        [0, 0, 1, 0, 1, 0],
+                        [0, 1, 1, 0, 0, 0],
+                        [0, 0, 0, 1, 1, 0],
+                        [0, 1, 0, 0, 1, 0],
+                        [0, 0, -1, -1, 0, 0],
+                        [0, -1, 0, -1, 0, 0],
+                        [0, 0, -1, 0, -1, 0],
+                        [0, -1, -1, 0, 0, 0],
+                        [0, 0, 0, -1, -1, 0],
+                        [0, -1, 0, 0, -1, 0] ],
+        "covered4":   [ [-1, 1, 0, 1, 1, 1],
+                        [-1, 1, 1, 0, 1, 1],
+                        [-1, 1, 1, 1, 0, 1],
+                        [-1, 1, 1, 1, 1, 0],
+                        [0, 1, 1, 1, 1, -1],
+                        [1, 0, 1, 1, 1, -1],
+                        [1, 1, 0, 1, 1, -1],
+                        [1, 1, 1, 0, 1, -1],
+                        [1, -1, 0, -1, -1, -1],
+                        [1, -1, -1, 0, -1, -1],
+                        [1, -1, -1, -1, 0, -1],
+                        [1, -1, -1, -1, -1, 0],
+                        [0, -1, -1, -1, -1, 1],
+                        [-1, 0, -1, -1, -1, 1],
+                        [-1, -1, 0, -1, -1, 1],
+                        [-1, -1, -1, 0, -1, 1] ],
+        "covered3":   [ [-1, 1, 1, 1, 0, 0],
+                        [-1, 1, 1, 0, 1, 0],
+                        [-1, 1, 0, 1, 1, 0],
+                        [0, 0, 1, 1, 1, -1],
+                        [0, 1, 0, 1, 1, -1],
+                        [0, 1, 1, 0, 1, -1],
+                        [-1, 1, 0, 1, 0, 1, -1],
+                        [-1, 0, 1, 1, 1, 0, -1],
+                        [-1, 1, 1, 0, 0, 1, -1],
+                        [-1, 1, 0, 0, 1, 1, -1],
+                        [1, -1, -1, -1, 0, 0],
+                        [1, -1, -1, 0, -1, 0],
+                        [1, -1, 0, -1, -1, 0],
+                        [0, 0, -1, -1, -1, 1],
+                        [0, -1, 0, -1, -1, 1],
+                        [0, -1, -1, 0, -1, 1],
+                        [1, -1, 0, -1, 0, -1, 1],
+                        [1, 0, -1, -1, -1, 0, 1],
+                        [1, -1, -1, 0, 0, -1, 1],
+                        [1, -1, 0, 0, -1, -1, 1] ],
+    },
 }
