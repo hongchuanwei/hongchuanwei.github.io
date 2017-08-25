@@ -6,8 +6,9 @@ $(new function() {
     /******* Properties *******/
     this.__containerDiv = $("#div-Gomoku");
     this.__board = new GomokuBoard($("#div-middle-top").height(), GRID_SIZE); // SVG group
-    this.__isBlackMove = true;
-    this.__model = new GomokuModel();
+    this.__currentPiece = GomokuPiece.Black; // assumes black goes first
+    this.__model = new GomokuModel(GomokuPiece.Black, GRID_SIZE);
+    this.__model.initialize();
     //this.__AI = new GomokuAI();
 
     /******* Delegates *******/
@@ -26,9 +27,14 @@ $(new function() {
 	 * @param {Object} e - Mouse click event
 	 */
 	function onPieceClicked(i, j, e) {
-        this.__board.showPiece(i, j, this.__isBlackMove);
-        this.__isBlackMove = !this.__isBlackMove;
-        this.__board.changePieceColor(this.__isBlackMove);
+        this.__board.showPiece(i, j, this.__currentPiece);
+        this.__model.setPiece(i, j, this.__currentPiece);
+        if (this.__model.isWinner(i, j, this.__currentPiece)) {
+            alert( this.__currentPiece);
+        }
+        this.__currentPiece = this.__model.getOpponent(this.__currentPiece);
+        this.__board.changePieceColor(this.__currentPiece);
+
     }
 
 });

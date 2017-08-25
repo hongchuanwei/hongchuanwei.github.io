@@ -55,12 +55,12 @@ GomokuBoard.prototype = {
      * Show the piece
      * @param {number} i - Row index
      * @param {number} j - Column index
-     * @param {boolean} isBlack - True if shown as black piece
+     * @param {GomokuPiece} piece - Which piece to draw
      */
-    showPiece: function showPiece(i, j, isBlack) {
-        let prevPieceClass = (isBlack) ? this.__constants.pieceBlackHiddenClass : this.__constants.pieceWhiteHiddenClass;
+    showPiece: function showPiece(i, j, piece) {
+        let prevPieceClass = (piece===GomokuPiece.Black) ? this.__constants.pieceBlackHiddenClass : this.__constants.pieceWhiteHiddenClass;
         this.__pieces[i][j].classList.remove(prevPieceClass);
-        let pieceClass = isBlack ? this.__constants.pieceBlackClass : this.__constants.pieceWhiteClass;
+        let pieceClass = (piece===GomokuPiece.Black) ? this.__constants.pieceBlackClass : this.__constants.pieceWhiteClass;
         // remove indicating ring from last piece and add it to current piece
         if (this.__piecePlaced.length > 0) {
             let lastPiecePos = this.__piecePlaced[this.__piecePlaced.length-1];
@@ -69,9 +69,13 @@ GomokuBoard.prototype = {
         this.__piecePlaced[this.__piecePlaced.length] = [i,j];
         this.__pieces[i][j].classList.add(pieceClass, this.__constants.pieceCurrentClass);
     },
-    changePieceColor: function changePieceColor(isBlack) {
-        let prevPieceClass = (!isBlack) ? this.__constants.pieceBlackHiddenClass : this.__constants.pieceWhiteHiddenClass;
-        let pieceClass = isBlack ? this.__constants.pieceBlackHiddenClass : this.__constants.pieceWhiteHiddenClass;
+    /**
+     * Change the hover effect color
+     * @param {GomokuPiece} piece - Which piece to change to
+     */
+    changePieceColor: function changePieceColor(piece) {
+        let prevPieceClass = (piece!==GomokuPiece.Black) ? this.__constants.pieceBlackHiddenClass : this.__constants.pieceWhiteHiddenClass;
+        let pieceClass = (piece===GomokuPiece.Black) ? this.__constants.pieceBlackHiddenClass : this.__constants.pieceWhiteHiddenClass;
 
         for (let i=0; i<this.__gridSize; i++) {
             for (let j=0; j<this.__gridSize; j++) {

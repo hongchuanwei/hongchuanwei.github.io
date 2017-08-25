@@ -11,12 +11,6 @@ GomokuModel = function fun$Gomoku$GomokuModel(playerPiece, gridSize) {
     this.__playerPiece = playerPiece;
     this.__gridSize = gridSize;
     this.__ArrayUtility = new ArrayUtility();
-    this.__placedPosMatrix = this.__ArrayUtility.createArray(this.__gridSize, this.__gridSize);
-    for (let i=0; i<this.__gridSize; i++) {
-        for (let j=0; j<this.__gridSize; j++) {
-            this.__placedPosMatrix[i][j] = GomokuPiece.None;
-        }
-    }
 }
 
 GomokuModel.prototype = {
@@ -57,6 +51,16 @@ GomokuModel.prototype = {
     __allPatterns: null,
     // last placed piece
     __lastPiece: null,
+
+    initialize: function fun$GomokuModel$initiate() {
+        this.__placedPosMatrix = this.__ArrayUtility.createArray(this.__gridSize, this.__gridSize);
+        for (let i=0; i<this.__gridSize; i++) {
+            for (let j=0; j<this.__gridSize; j++) {
+                this.__placedPosMatrix[i][j] = GomokuPiece.None;
+            }
+        }
+        this.__allPatterns = this.get_allPatterns();
+    },
     /**
      * Resets the game
      */
@@ -137,6 +141,12 @@ GomokuModel.prototype = {
             this.__getPattern(i, j, 0, 1, piece),
             this.__getPattern(i, j, 1, 1, piece),
             this.__getPattern(i, j, 1, -1, piece)];
+        for (let i=0; i<patterns.length; i++) {
+            if (this.__ArrayUtility.isAnyArraysInArray(this.get_allPatterns()[0], patterns[i])) {
+                return true;
+            }
+        }
+        return false;
     },
 
 
@@ -145,8 +155,8 @@ GomokuModel.prototype = {
      */
 	__getPattern: function fun$GomokuModel$getCombo(i, j, dx, dy, piece) {
 		var pattern = [piece];
-		var gridSize = this.__model.get_gridSize(); // board size
-		var gameSize = this.__model.get_gameSize(); // number of pieces to win
+		var gridSize = this.__gridSize; // board size
+		var gameSize = this.__gridSize; // number of pieces to win
 		// look in one direction
         for (var m = 1; m < gameSize; m++) {
 			var nextX1 = i - dx * m;
@@ -155,7 +165,7 @@ GomokuModel.prototype = {
 				break;
 			}
 			var next1 = this.__placedPosMatrix[nextX1][nextY1];
-			if (next1 == this.__model.getOpponent(piece)) {
+			if (next1 == this.getOpponent(piece)) {
 				pattern.unshift(next1); // add before
 				break;
 			}
@@ -169,7 +179,7 @@ GomokuModel.prototype = {
 				break;
 			}
 			var next2 = this.__placedPosMatrix[nextX2][nextY2];
-			if (next2 == this.__model.getOpponent(piece)) {
+			if (next2 == this.getOpponent(piece)) {
 				pattern.push(next2); // add after
 				break;
 			}
