@@ -45,6 +45,7 @@ $(new function() {
 	this.__onOButtonLeave = onObuttonLeave.bind(this);
 
 	/******* Initialization *******/
+	$("#div-TTTcontainer-left").height(Math.max(600, ($(window).height()-50)*0.8));
 	this.__containerDiv.append( this.__board.canvas );
 	this.__board.canvas.bind("click", this.__onCanvasClicked);
 

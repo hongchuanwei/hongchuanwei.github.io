@@ -1,7 +1,11 @@
 ---
 # Gomoku style file
 ---
+
+
+
 #div-Gomoku {
+    margin-top: 5px;
     border: 1px solid red;
 }
 
@@ -55,4 +59,9 @@
     stroke: #00BFFE;
     stroke-width: 2px;
     shape-rendering: auto;
+}
+
+
+// Gomoku control styles
+#div-Gomoku-control {
 }

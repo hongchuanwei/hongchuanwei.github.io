@@ -7,8 +7,10 @@ var NUM_GAMES = GAME_URL.length;
 
 $(function() {
 
+	// appearance
+	$(".carousel-bar").height($(window).height()-50);
 	// properties
-	this.gameIdx = 0;
+	this.gameIdx = 1;
 	this.containerDiv = $("#div-container");
 	this.carouselLeft = $("#carousel-l");
 	this.carouselRight = $("#carousel-r");

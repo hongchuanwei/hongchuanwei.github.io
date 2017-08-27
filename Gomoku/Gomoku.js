@@ -1,11 +1,12 @@
 /* Gomoku Game control */
 $(new function() {
     /******* Constants *******/
-    const GRID_SIZE = 15;
+    const GRID_SIZE = 21;
 
     /******* Properties *******/
     this.__containerDiv = $("#div-Gomoku");
-    this.__board = new GomokuBoard($("#div-middle-top").height(), GRID_SIZE); // SVG group
+    this.__containerDiv.height(Math.max(600,($(window).height()-50)*0.6));
+    this.__board = new GomokuBoard(this.__containerDiv.height(), GRID_SIZE); // SVG group
     this.__currentPiece = GomokuPiece.Black; // assumes black goes first
     this.__model = new GomokuModel(GomokuPiece.Black, GRID_SIZE);
     this.__model.initialize();
