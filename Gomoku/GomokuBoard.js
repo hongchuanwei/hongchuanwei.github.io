@@ -5,7 +5,6 @@
  */
 GomokuBoard = function (boardLength, gridSize) {
     this.__SVGUtility = new SVGUtility();
-    this.__ArrayUtility = new ArrayUtility();
     this.__boardLength = boardLength;
     this.__gridSize = gridSize;
 }
@@ -152,7 +151,7 @@ GomokuBoard.prototype = {
 
         // create pieces
         if (!this.__pieces) {
-            this.__pieces = this.__ArrayUtility.createArray(this.__gridSize, this.__gridSize);
+            this.__pieces = ArrayUtility.prototype.createArray(this.__gridSize, this.__gridSize);
         }
         let pieceR = stripSize/8*3.7;
         for (let i=0; i<this.__gridSize; i++) {

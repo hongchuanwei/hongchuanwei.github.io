@@ -10,16 +10,14 @@ GomokuPiece = {
 GomokuModel = function fun$Gomoku$GomokuModel(playerPiece, gridSize) {
     this.__playerPiece = playerPiece;
     this.__gridSize = gridSize;
-    this.__ArrayUtility = new ArrayUtility();
 }
 
 GomokuModel.prototype = {
     // last placed piece
     __lastPiece: null,
 
-
     initialize: function fun$GomokuModel$initiate() {
-        this.__placedPosMatrix = this.__ArrayUtility.createArray(this.__gridSize, this.__gridSize);
+        this.__placedPosMatrix = ArrayUtility.prototype.createArray(this.__gridSize, this.__gridSize);
         for (let i=0; i<this.__gridSize; i++) {
             for (let j=0; j<this.__gridSize; j++) {
                 this.__placedPosMatrix[i][j] = GomokuPiece.None;
@@ -33,7 +31,7 @@ GomokuModel.prototype = {
         this.__playerPiece = GomokuPiece.Black;
         this.__lastPiece = null;
 
-        this.__placedPosMatrix = this.__ArrayUtility.createArray(this.__gridSize, this.__gridSize);
+        this.__placedPosMatrix = ArrayUtility.prototype.createArray(this.__gridSize, this.__gridSize);
         for (let i=0; i<this.__gridSize; i++) {
             for (let j=0; j<this.__gridSize; j++) {
                 this.__placedPosMatrix[i][j] = GomokuPiece.None;
@@ -56,6 +54,27 @@ GomokuModel.prototype = {
     },
 
     /**
+     * Gets player's piece
+     */
+    get_playerPiece: function fun$GomokuModel$getPlayerPiece() {
+        return this.__playerPiece;
+    },
+
+    /**
+     * Gets computer piece
+     */
+    get_AIPiece: function fun$GomokuModel$getAIPiece() {
+        return this.getOpponent(this.__playerPiece);
+    },
+
+    /**
+     * Gets the matrix representing already placed pieces
+     */
+    get_placedPosMatrix: function fun$GomokuModel$getPlacedPosMatrix() {
+        return this.__placedPosMatrix;
+    },
+
+    /**
      * Gets opponent's piece
      */
     getOpponent: function fun$GomokuModel$getOpponent(piece) {
@@ -63,7 +82,6 @@ GomokuModel.prototype = {
         if (piece === GomokuPiece.White) { return GomokuPiece.Black; }
         return GomokuPiece.None;
     },
-
     /**
      * Sets piece at [i, j]
      */
@@ -78,12 +96,12 @@ GomokuModel.prototype = {
      * Find if wins by placing piece at [i, j]
      */
     isWinner: function fun$GomokuModel$isWinner(i, j, piece) {
-        let patterns = [this.__getPattern(i, j, 1, 0, piece),
-            this.__getPattern(i, j, 0, 1, piece),
-            this.__getPattern(i, j, 1, 1, piece),
-            this.__getPattern(i, j, 1, -1, piece)];
+        let patterns = [this.getPattern(i, j, 1, 0, piece),
+            this.getPattern(i, j, 0, 1, piece),
+            this.getPattern(i, j, 1, 1, piece),
+            this.getPattern(i, j, 1, -1, piece)];
         for (let i=0; i<patterns.length; i++) {
-            if (this.__ArrayUtility.isAnyArraysInArray(this.__patterns.win, patterns[i])) {
+            if (this.isWin(patterns[i])) {
                 return true;
             }
         }
@@ -91,9 +109,41 @@ GomokuModel.prototype = {
     },
 
     /**
+     * If this is a winning pattern
+     * @param {Array} pattern - piece pattern in one direction
+     */
+    isWin: function fun$GomokuModel$isWin(pattern) {
+        return ArrayUtility.prototype.isAnyArraysInArray(this.__patterns.win, pattern);
+    },
+
+    /**
+     * If this is an uncovered four pattern
+     * @param {Array} pattern - piece pattern in one direction
+     */
+    isUnCovered4: function fun$GomokuModel$isUnConvered4(pattern) {
+        return ArrayUtility.prototype.isAnyArraysInArray(this.__patterns.unCovered4, pattern);
+    },
+
+    isUnCovered3: function fun$GomokuModel$isUnConvered3(pattern) {
+        return ArrayUtility.prototype.isAnyArraysInArray(this.__patterns.unCovered3, pattern);
+    },
+
+    isUnCovered2: function fun$GomokuModel$isUnConvered2(pattern) {
+        return ArrayUtility.prototype.isAnyArraysInArray(this.__patterns.unCovered2, pattern);
+    },
+
+    isCovered4: function fun$GomokuModel$isCovered4(pattern) {
+        return ArrayUtility.prototype.isAnyArraysInArray(this.__patterns.covered4, pattern);
+    },
+
+    isCovered3: function fun$GomokuModel$isCovered3(pattern) {
+        return ArrayUtility.prototype.isAnyArraysInArray(this.__patterns.covered3, pattern);
+    },
+
+    /**
      * Get pattern in one of four directions. Need to look forward and backward.
      */
-	__getPattern: function fun$GomokuModel$getCombo(i, j, dx, dy, piece) {
+	getPattern: function fun$GomokuModel$getCombo(i, j, dx, dy, piece) {
 		var pattern = [piece];
 		var gridSize = this.__gridSize; // board size
 		var gameSize = this.__gridSize; // number of pieces to win

@@ -9,8 +9,8 @@ $(new function() {
     this.__currentPiece = GomokuPiece.Black; // assumes black goes first
     this.__model = new GomokuModel(GomokuPiece.Black, GRID_SIZE);
     this.__model.initialize();
-    //this.__AI = new GomokuAI();
-
+    this.__AI = new GomokuAI(this.__model, 1);
+    this.__AI.initialize();
     /******* Delegates *******/
     // Canvas clicking delegate
     this.__onPieceClicked = onPieceClicked.bind(this);
@@ -29,12 +29,21 @@ $(new function() {
 	function onPieceClicked(i, j, e) {
         this.__board.showPiece(i, j, this.__currentPiece);
         this.__model.setPiece(i, j, this.__currentPiece);
+        this.__AI.getInformed(i,j);
         if (this.__model.isWinner(i, j, this.__currentPiece)) {
-            alert( this.__currentPiece);
+            alert(this.__currentPiece);
         }
         this.__currentPiece = this.__model.getOpponent(this.__currentPiece);
         this.__board.changePieceColor(this.__currentPiece);
 
+        // AI move
+        let bestMove = this.__AI.heuristicAlgorithm();
+        this.__board.showPiece(bestMove[0], bestMove[1], this.__currentPiece);
+        this.__model.setPiece(bestMove[0], bestMove[1], this.__currentPiece);
+        if (this.__model.isWinner(bestMove[0], bestMove[1], this.__currentPiece)) {
+            alert(this.__currentPiece);
+        }
+        this.__currentPiece = this.__model.getOpponent(this.__currentPiece);
+        this.__board.changePieceColor(this.__currentPiece);
     }
-
 });
